@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nithin Kumar Reddy — Portfolio</title>
+  <meta name="description" content="Software engineering portfolio: multi-agent systems, cloud data pipelines, open source (Prowler), FastAPI, Azure, Databricks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2f;
+      --panel-2: #18223c;
+      --text: #e8eefc;
+      --muted: #9aa8c7;
+      --accent: #5b8cff;
+      --accent-2: #3dd6c6;
+      --line: rgba(255,255,255,0.08);
+      --shadow: 0 18px 50px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(91,140,255,0.22), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(61,214,198,0.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      padding: 2.2rem 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand { font-weight: 700; letter-spacing: -0.02em; font-size: 1.05rem; }
+    nav { display: flex; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: 0.95rem; }
+    nav a { color: var(--muted); }
+    nav a:hover { color: var(--text); text-decoration: none; }
+    .hero {
+      padding: 2.5rem 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+    .card {
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.5rem;
+    }
+    h1 {
+      margin: 0 0 0.6rem;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 1.1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .chip {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.82rem;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 12px;
+      padding: 0.7rem 1rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      text-decoration: none !important;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-ghost { background: transparent; border-color: var(--line); color: var(--text); }
+    .stat-grid { display: grid; gap: 0.8rem; height: 100%; }
+    .stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+    }
+    .stat b { display: block; font-size: 1.25rem; margin-bottom: 0.15rem; }
+    .stat span { color: var(--muted); font-size: 0.9rem; }
+    section { padding: 1.4rem 0 0.4rem; }
+    h2 { margin: 0 0 0.9rem; font-size: 1.35rem; letter-spacing: -0.02em; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .project h3 { margin: 0 0 0.35rem; font-size: 1.08rem; }
+    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.7rem; font-family: "JetBrains Mono", monospace; }
+    .project p { margin: 0 0 0.9rem; color: #d5def3; font-size: 0.95rem; }
+    .links { display: flex; gap: 0.8rem; flex-wrap: wrap; font-size: 0.92rem; }
+    .flow {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      white-space: pre-wrap;
+      background: #0a0f1d;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem;
+      color: #b7c7ea;
+      overflow: auto;
+    }
+    footer {
+      margin: 2.5rem 0 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Nithin Kumar Reddy</div>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#opensource">Open Source</a>
+        <a href="#demo">Demo flow</a>
+        <a href="https://github.com/Nithin078">GitHub</a>
+        <a href="https://linkedin.com/in/r-nithin-kumar-reddy">LinkedIn</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="card">
+        <h1>Building AI systems that ship — agents, pipelines, and developer tooling.</h1>
+        <p class="lede">
+          CS undergrad at PES University. I work on multi-agent orchestration, cloud-native data platforms
+          (Azure / Databricks), and autonomous software engineering tools. Contributor to
+          <a href="https://github.com/prowler-cloud/prowler">Prowler</a> (cloud security).
+        </p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Multi-agent AI</span>
+          <span class="chip">Azure / Databricks</span>
+          <span class="chip">AWS security</span>
+          <span class="chip">React</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/Nithin078">View GitHub</a>
+          <a class="btn btn-ghost" href="mailto:nithinkr078@gmail.com">Email me</a>
+          <a class="btn btn-ghost" href="https://github.com/prowler-cloud/prowler/pull/12076">Prowler PR #12076</a>
+        </div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><b>Open source</b><span>AWS EC2 compliance check in Prowler</span></div>
+        <div class="stat"><b>7-agent system</b><span>Dynamic orchestration for big-data ETL</span></div>
+        <div class="stat"><b>Research intern</b><span>IFSCR — image provenance forensics</span></div>
+        <div class="stat"><b>Hackathons</b><span>Top 4 FASTATHON · Top 4 Space Race</span></div>
+      </div>
+    </div>
+
+    <section id="projects">
+      <h2>Featured projects</h2>
+      <div class="grid">
+        <article class="card project">
+          <h3>Aegis Engineer</h3>
+          <div class="meta">Python · AST · LSP · multi-agent · GitHub API</div>
+          <p>
+            Autonomous software-engineering platform with a Repository Intelligence Engine.
+            Understands codebases and targets production-ready PR-style fixes for GitHub issues.
+          </p>
+          <div class="links">
+            <a href="https://github.com/Nithin078/Aegis-Engineer">Repository →</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <h3>Agentic Big Data Pipeline Orchestration</h3>
+          <div class="meta">FastAPI · Azure ADF · Databricks · scikit-learn · React</div>
+          <p>
+            Seven specialized agents plan, size, monitor, and heal ETL pipelines.
+            ML-driven compute sizing cut over-provisioning ~30% in evaluation runs.
+          </p>
+          <div class="links">
+            <a href="https://github.com/Nithin078/Agentic-AI-Driven-Dynamic-Orchestration-of-Big-Data-Pipelines">Repository →</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <h3>DemoGen</h3>
+          <div class="meta">FastAPI · Playwright · FFmpeg · TTS · React</div>
+          <p>
+            Turn a plain-language product walkthrough into a narrated demo video:
+            plan browser actions, record the UI, synthesize voiceover, compose MP4.
+          </p>
+          <div class="links">
+            <a href="https://github.com/Nithin078/DemoGen">Repository →</a>
+            <a href="#demo">Architecture →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="opensource">
+      <h2>Open source</h2>
+      <div class="card">
+        <h3 style="margin-top:0">Prowler — cloud security platform</h3>
+        <p style="color:var(--muted); margin-top:0.2rem">
+          <a href="https://github.com/prowler-cloud/prowler/pull/12076">PR #12076</a>
+          adds <code>ec2_instance_stopped_older_than_specific_days</code>: a configurable check that flags
+          EC2 instances left stopped longer than a threshold (default 30 days). Includes service model updates,
+          config schema, unit tests, and docs.
+        </p>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">AWS EC2</span>
+          <span class="chip">Compliance checks</span>
+          <span class="chip">pytest</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <h2>DemoGen pipeline (visual walkthrough)</h2>
+      <div class="card">
+        <p class="lede" style="margin-top:0">
+          End-to-end flow from prompt → plan → record → narrate → compose. Run locally with Docker or Python 3.12+.
+        </p>
+        <div class="flow">Text Prompt
+   │
+   ▼
+┌──────────────┐
+│  DOM Fetch   │  Extract interactable elements from target page
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ LLM Planner  │  OpenRouter / Gemini → structured browser steps
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ TTS Engine   │  gTTS / ElevenLabs narration per step
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ Automation   │  Playwright/Selenium + screen capture
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│  Composer    │  FFmpeg merges video + audio → MP4
+└──────┬───────┘
+       │
+       ▼
+   Demo video output</div>
+        <p style="margin-bottom:0; margin-top:1rem">
+          Quick start: <code>git clone https://github.com/Nithin078/DemoGen && docker build -t demogen .</code>
+          — see README for API keys and local UI.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Nithin Kumar Reddy · Bengaluru</div>
+      <div>
+        <a href="mailto:nithinkr078@gmail.com">nithinkr078@gmail.com</a>
+        ·
+        <a href="https://github.com/Nithin078">github.com/Nithin078</a>
+      </div>
+    </footer>
+  </div>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
