@@ -2,295 +2,1117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nithin Kumar Reddy — Portfolio</title>
-  <meta name="description" content="Software engineering portfolio: multi-agent systems, cloud data pipelines, open source (Prowler), FastAPI, Azure, Databricks." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>NITHIN — Systems · Agents · Open Source</title>
+  <meta name="description" content="Nithin Kumar Reddy — multi-agent systems, cloud pipelines, autonomous engineering tools, Prowler OSS." />
+  <meta property="og:title" content="NITHIN — Portfolio" />
+  <meta property="og:description" content="Cinematic portfolio · AI systems · cloud · open source" />
+  <meta property="og:url" content="https://nithin078.github.io" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0b1020;
-      --panel: #121a2f;
-      --panel-2: #18223c;
-      --text: #e8eefc;
-      --muted: #9aa8c7;
-      --accent: #5b8cff;
-      --accent-2: #3dd6c6;
-      --line: rgba(255,255,255,0.08);
-      --shadow: 0 18px 50px rgba(0,0,0,0.35);
-      --radius: 18px;
+      --void: #050505;
+      --ink: #f4f1ea;
+      --mute: #8a867c;
+      --lime: #c8ff00;
+      --cyan: #5ef2e0;
+      --hot: #ff4d6d;
+      --glass: rgba(244, 241, 234, 0.06);
+      --line: rgba(244, 241, 234, 0.12);
+      --font-display: "Syne", system-ui, sans-serif;
+      --font-serif: "Instrument Serif", Georgia, serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
-    * { box-sizing: border-box; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    html, body { min-height: 100%; }
     body {
-      margin: 0;
-      font-family: "DM Sans", system-ui, sans-serif;
-      background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(91,140,255,0.22), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(61,214,198,0.12), transparent 55%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.55;
+      background: var(--void);
+      color: var(--ink);
+      font-family: var(--font-display);
+      overflow-x: hidden;
+      cursor: none;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent-2); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { width: min(1080px, calc(100% - 2rem)); margin: 0 auto; }
-    header {
-      padding: 2.2rem 0 1rem;
+    body.touch { cursor: auto; }
+    body.touch .cursor, body.touch .cursor-dot { display: none !important; }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: none; }
+
+    /* noise + vignette */
+    .noise {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      opacity: 0.07;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .vignette {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9980;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%);
+    }
+
+    /* custom cursor */
+    .cursor, .cursor-dot {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 10000;
+      pointer-events: none;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+    .cursor {
+      width: 42px; height: 42px;
+      border: 1px solid #fff;
+      transition: width .25s var(--ease), height .25s var(--ease), background .25s, border-color .25s;
+    }
+    .cursor.hover {
+      width: 72px; height: 72px;
+      background: var(--lime);
+      border-color: var(--lime);
+      mix-blend-mode: normal;
+    }
+    .cursor-dot {
+      width: 6px; height: 6px;
+      background: #fff;
+    }
+
+    /* preloader */
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 20000;
+      background: var(--void);
+      display: grid;
+      place-items: center;
+      transition: opacity .8s var(--ease), visibility .8s;
+    }
+    .loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-inner { text-align: center; width: min(420px, 80vw); }
+    .loader-word {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      overflow: hidden;
+    }
+    .loader-word span {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: rise .9s var(--ease) forwards;
+    }
+    .loader-bar {
+      margin-top: 1.5rem;
+      height: 2px;
+      background: var(--line);
+      overflow: hidden;
+    }
+    .loader-bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--lime);
+      animation: load 1.6s var(--ease) forwards;
+    }
+    .loader-meta {
+      margin-top: .8rem;
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--mute);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    @keyframes rise { to { transform: translateY(0); } }
+    @keyframes load { to { width: 100%; } }
+
+    /* nav */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
-      gap: 1rem;
       align-items: center;
-      flex-wrap: wrap;
+      padding: 1.2rem clamp(1rem, 4vw, 2.5rem);
+      mix-blend-mode: difference;
     }
-    .brand { font-weight: 700; letter-spacing: -0.02em; font-size: 1.05rem; }
-    nav { display: flex; gap: 1rem; flex-wrap: wrap; color: var(--muted); font-size: 0.95rem; }
-    nav a { color: var(--muted); }
-    nav a:hover { color: var(--text); text-decoration: none; }
-    .hero {
-      padding: 2.5rem 0 1.5rem;
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 1.5rem;
-      align-items: stretch;
-    }
-    @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
-    .card {
-      background: linear-gradient(180deg, var(--panel), var(--panel-2));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.4rem 1.5rem;
-    }
-    h1 {
-      margin: 0 0 0.6rem;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
+    .nav-brand {
+      font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.15;
+      font-size: 1rem;
     }
-    .lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 1.1rem; }
-    .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
-    .chip {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      border-radius: 999px;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.82rem;
+    .nav-brand em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--lime);
+      mix-blend-mode: normal;
     }
-    .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      position: relative;
+      opacity: .7;
+      transition: opacity .25s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 1px;
+      background: var(--lime);
+      transition: width .35s var(--ease);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: grid;
+      align-content: end;
+      padding: 0 clamp(1rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2.5rem);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,5,5,.35) 0%, rgba(5,5,5,.15) 40%, rgba(5,5,5,.92) 100%),
+        url("assets/hero-bleed.jpg") center/cover no-repeat;
+      transform: scale(1.08);
+      animation: ken 18s ease-in-out infinite alternate;
+      filter: saturate(1.15) contrast(1.05);
+    }
+    @keyframes ken {
+      from { transform: scale(1.08) translate(0, 0); }
+      to { transform: scale(1.16) translate(-1.5%, 1%); }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,255,0,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,255,0,.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse at 30% 20%, black, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-orb {
+      position: absolute;
+      width: 42vw; height: 42vw;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .35;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+    .hero-orb.a {
+      top: -10%; right: -8%;
+      background: radial-gradient(circle, var(--lime), transparent 65%);
+    }
+    .hero-orb.b {
+      bottom: 10%; left: -12%;
+      background: radial-gradient(circle, var(--cyan), transparent 65%);
+      opacity: .2;
+    }
+    .hero-kicker {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+    .hero-kicker::before {
+      content: "";
+      width: 28px; height: 1px;
+      background: var(--lime);
+    }
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(3.6rem, 14vw, 11rem);
+      line-height: .86;
+      letter-spacing: -0.055em;
+      font-weight: 800;
+      text-transform: uppercase;
+      max-width: 12ch;
+    }
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+    }
+    .hero-title .line span {
+      display: inline-block;
+      transform: translateY(110%);
+      animation: rise 1s var(--ease) forwards;
+      animation-delay: calc(var(--i) * .08s + .4s);
+    }
+    .hero-title .serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      color: var(--lime);
+      letter-spacing: -0.03em;
+    }
+    .hero-bottom {
+      position: relative;
+      z-index: 2;
+      margin-top: clamp(1.5rem, 4vw, 3rem);
+      display: grid;
+      grid-template-columns: 1.4fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+    @media (max-width: 800px) {
+      .hero-bottom { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    .hero-lede {
+      font-family: var(--font-serif);
+      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+      font-weight: 400;
+      line-height: 1.35;
+      color: #d8d4cb;
+      max-width: 34ch;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
     .btn {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      border-radius: 12px;
-      padding: 0.7rem 1rem;
-      font-weight: 600;
-      border: 1px solid transparent;
-      text-decoration: none !important;
-    }
-    .btn-primary { background: var(--accent); color: white; }
-    .btn-ghost { background: transparent; border-color: var(--line); color: var(--text); }
-    .stat-grid { display: grid; gap: 0.8rem; height: 100%; }
-    .stat {
-      background: rgba(255,255,255,0.03);
+      gap: .55rem;
+      padding: .95rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 0.9rem 1rem;
+      transition: transform .35s var(--ease), background .35s, color .35s, border-color .35s;
+      overflow: hidden;
     }
-    .stat b { display: block; font-size: 1.25rem; margin-bottom: 0.15rem; }
-    .stat span { color: var(--muted); font-size: 0.9rem; }
-    section { padding: 1.4rem 0 0.4rem; }
-    h2 { margin: 0 0 0.9rem; font-size: 1.35rem; letter-spacing: -0.02em; }
-    .grid {
+    .btn-primary {
+      background: var(--lime);
+      color: #0a0a0a;
+      border-color: var(--lime);
+    }
+    .btn-primary:hover { transform: scale(1.04); }
+    .btn-ghost:hover {
+      border-color: var(--ink);
+      background: rgba(244,241,234,.06);
+    }
+    .scroll-hint {
+      position: absolute;
+      right: clamp(1rem, 4vw, 2.5rem);
+      bottom: clamp(1.5rem, 4vw, 2.5rem);
+      z-index: 3;
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--mute);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .scroll-hint::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 48px;
+      margin-top: .6rem;
+      background: linear-gradient(var(--mute), transparent);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: .3; transform: scaleY(.7); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* marquee */
+    .marquee {
+      border-block: 1px solid var(--line);
+      background: #080808;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: .9rem 0;
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 2.5rem;
+      animation: marquee 28s linear infinite;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .marquee-track span { display: inline-flex; align-items: center; gap: .7rem; }
+    .marquee-track b { color: var(--lime); font-weight: 600; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* sections common */
+    section { position: relative; }
+    .section-pad {
+      padding: clamp(4rem, 10vw, 8rem) clamp(1rem, 4vw, 2.5rem);
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      line-height: .95;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+      max-width: 14ch;
+      margin-bottom: 1.2rem;
+    }
+    .section-title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--cyan);
+    }
+
+    /* about strip */
+    .about {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: center;
     }
-    .project h3 { margin: 0 0 0.35rem; font-size: 1.08rem; }
-    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.7rem; font-family: "JetBrains Mono", monospace; }
-    .project p { margin: 0 0 0.9rem; color: #d5def3; font-size: 0.95rem; }
-    .links { display: flex; gap: 0.8rem; flex-wrap: wrap; font-size: 0.92rem; }
-    .flow {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.78rem;
-      white-space: pre-wrap;
-      background: #0a0f1d;
+    @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+    .about-visual {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .about-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) saturate(1.1);
+      transition: transform 1.2s var(--ease);
+    }
+    .about-visual:hover img { transform: scale(1.06); }
+    .about-badge {
+      position: absolute;
+      left: 1rem; bottom: 1rem;
+      padding: .65rem .9rem;
+      background: rgba(5,5,5,.72);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 1rem;
-      color: #b7c7ea;
-      overflow: auto;
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
+    .about-badge strong { display: block; color: var(--lime); font-size: .85rem; letter-spacing: 0; margin-bottom: .2rem; }
+    .about-copy p {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 2.4vw, 1.65rem);
+      line-height: 1.4;
+      color: #d9d5cc;
+      margin-bottom: 1.4rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+    .stat {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+    }
+    .stat b {
+      display: block;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      letter-spacing: -0.04em;
+      color: var(--lime);
+    }
+    .stat span {
+      font-family: var(--font-mono);
+      font-size: .65rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    /* work horizontal */
+    .work-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .work-note {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--mute);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      max-width: 28ch;
+    }
+    .work-rail {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(300px, 78vw);
+      gap: 1.2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--lime) transparent;
+    }
+    @media (min-width: 900px) {
+      .work-rail { grid-auto-columns: minmax(420px, 42vw); }
+    }
+    .work-rail::-webkit-scrollbar { height: 4px; }
+    .work-rail::-webkit-scrollbar-thumb { background: var(--lime); border-radius: 99px; }
+    .project {
+      scroll-snap-align: start;
+      position: relative;
+      min-height: 520px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #0b0b0b;
+      isolation: isolate;
+      transition: transform .5s var(--ease), border-color .5s;
+    }
+    .project:hover { border-color: rgba(200,255,0,.45); transform: translateY(-6px); }
+    .project-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: .45;
+      transition: transform 1s var(--ease), opacity .5s;
+      z-index: -1;
+    }
+    .project:hover .project-bg { transform: scale(1.08); opacity: .6; }
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 20%, rgba(5,5,5,.95) 85%);
+      z-index: 0;
+    }
+    .project-body {
+      position: absolute;
+      inset: auto 0 0 0;
+      z-index: 1;
+      padding: 1.5rem;
+    }
+    .project-idx {
+      font-family: var(--font-mono);
+      font-size: .7rem;
+      color: var(--lime);
+      letter-spacing: .16em;
+      margin-bottom: .6rem;
+    }
+    .project h3 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: .7rem;
+    }
+    .project p {
+      color: #c7c2b7;
+      font-size: .95rem;
+      line-height: 1.45;
+      margin-bottom: 1rem;
+      max-width: 42ch;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem .55rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--mute);
+    }
+    .project-links { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .project-links a {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 1px solid var(--lime);
+      padding-bottom: 2px;
+    }
+
+    /* open source terminal */
+    .oss {
+      background:
+        radial-gradient(ellipse at 80% 0%, rgba(200,255,0,.08), transparent 50%),
+        #070707;
+      border-block: 1px solid var(--line);
+    }
+    .terminal {
+      margin-top: 2rem;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      background: #0a0a0a;
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: #101010;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.r { background: #ff5f57; }
+    .dot.y { background: #febc2e; }
+    .dot.g { background: #28c840; }
+    .terminal-bar span {
+      margin-left: .6rem;
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      color: var(--mute);
+    }
+    .terminal-body {
+      padding: 1.2rem 1.3rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: clamp(.78rem, 1.5vw, .9rem);
+      line-height: 1.7;
+      color: #cfd6c4;
+    }
+    .terminal-body .prompt { color: var(--lime); }
+    .terminal-body .cmd { color: var(--ink); }
+    .terminal-body .out { color: var(--mute); }
+    .terminal-body a {
+      color: var(--cyan);
+      border-bottom: 1px dashed rgba(94,242,224,.4);
+    }
+    .terminal-body .ok { color: var(--lime); }
+
+    /* skills bento */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: .9rem;
+      margin-top: 2rem;
+    }
+    .bento-card {
+      grid-column: span 4;
+      padding: 1.3rem;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, rgba(255,255,255,.04), transparent 55%);
+      min-height: 160px;
+      transition: border-color .35s, transform .35s var(--ease);
+    }
+    .bento-card:hover {
+      border-color: rgba(200,255,0,.4);
+      transform: translateY(-4px);
+    }
+    .bento-card.wide { grid-column: span 8; }
+    .bento-card.tall { min-height: 220px; }
+    @media (max-width: 900px) {
+      .bento-card, .bento-card.wide { grid-column: span 12; }
+    }
+    .bento-card h4 {
+      font-size: .78rem;
+      font-family: var(--font-mono);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-bottom: .8rem;
+    }
+    .bento-card p {
+      font-size: 1.15rem;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip {
+      padding: .45rem .7rem;
+      border-radius: 999px;
+      background: rgba(200,255,0,.08);
+      border: 1px solid rgba(200,255,0,.18);
+      font-size: .78rem;
+      font-weight: 600;
+    }
+
+    /* contact */
+    .contact {
+      min-height: 80vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: clamp(4rem, 10vw, 8rem) 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: "";
+      position: absolute;
+      width: 60vw; height: 60vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,255,0,.18), transparent 60%);
+      filter: blur(20px);
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      from { transform: translate(-10%, -5%); }
+      to { transform: translate(10%, 8%); }
+    }
+    .contact-inner { position: relative; z-index: 1; }
+    .contact h2 {
+      font-size: clamp(3rem, 12vw, 8rem);
+      line-height: .88;
+      letter-spacing: -0.05em;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+    }
+    .contact h2 em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--lime);
+    }
+    .contact p {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: #cfcabf;
+      margin-bottom: 2rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+
     footer {
-      margin: 2.5rem 0 2rem;
-      color: var(--muted);
-      font-size: 0.9rem;
+      padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 2rem;
       border-top: 1px solid var(--line);
-      padding-top: 1rem;
       display: flex;
       justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mute);
     }
+
+    /* reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s var(--ease), transform .9s var(--ease);
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* sticky side label */
+    .side-label {
+      position: fixed;
+      left: .6rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      transform-origin: center;
+      font-family: var(--font-mono);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--mute);
+      z-index: 50;
+      pointer-events: none;
+      opacity: .55;
+    }
+    @media (max-width: 900px) { .side-label { display: none; } }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">Nithin Kumar Reddy</div>
-      <nav>
-        <a href="#projects">Projects</a>
-        <a href="#opensource">Open Source</a>
-        <a href="#demo">Demo flow</a>
-        <a href="https://github.com/Nithin078">GitHub</a>
-        <a href="https://linkedin.com/in/r-nithin-kumar-reddy">LinkedIn</a>
-      </nav>
-    </header>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="side-label">Nithin · Bengaluru · 2026</div>
 
-    <div class="hero">
-      <div class="card">
-        <h1>Building AI systems that ship — agents, pipelines, and developer tooling.</h1>
-        <p class="lede">
-          CS undergrad at PES University. I work on multi-agent orchestration, cloud-native data platforms
-          (Azure / Databricks), and autonomous software engineering tools. Contributor to
-          <a href="https://github.com/prowler-cloud/prowler">Prowler</a> (cloud security).
-        </p>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">Multi-agent AI</span>
-          <span class="chip">Azure / Databricks</span>
-          <span class="chip">AWS security</span>
-          <span class="chip">React</span>
-        </div>
-        <div class="actions">
-          <a class="btn btn-primary" href="https://github.com/Nithin078">View GitHub</a>
-          <a class="btn btn-ghost" href="mailto:nithinkr078@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="https://github.com/prowler-cloud/prowler/pull/12076">Prowler PR #12076</a>
-        </div>
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-word">
+        <span style="animation-delay:.05s">N</span><span style="animation-delay:.1s">I</span><span style="animation-delay:.15s">T</span><span style="animation-delay:.2s">H</span><span style="animation-delay:.25s">I</span><span style="animation-delay:.3s">N</span>
       </div>
-      <div class="stat-grid">
-        <div class="stat"><b>Open source</b><span>AWS EC2 compliance check in Prowler</span></div>
-        <div class="stat"><b>7-agent system</b><span>Dynamic orchestration for big-data ETL</span></div>
-        <div class="stat"><b>Research intern</b><span>IFSCR — image provenance forensics</span></div>
-        <div class="stat"><b>Hackathons</b><span>Top 4 FASTATHON · Top 4 Space Race</span></div>
+      <div class="loader-bar"><i></i></div>
+      <div class="loader-meta">booting systems · agents · pipelines</div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <a class="nav-brand magnetic" href="#top">NITHIN <em>//</em> KR</a>
+    <div class="nav-links">
+      <a class="magnetic" href="#work">Work</a>
+      <a class="magnetic" href="#oss">Open Source</a>
+      <a class="magnetic" href="#stack">Stack</a>
+      <a class="magnetic" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-orb a" aria-hidden="true"></div>
+    <div class="hero-orb b" aria-hidden="true"></div>
+
+    <div class="hero-kicker">Software systems · multi-agent AI · cloud</div>
+    <h1 class="hero-title">
+      <span class="line"><span style="--i:1">Build</span></span>
+      <span class="line"><span style="--i:2">systems</span></span>
+      <span class="line"><span class="serif" style="--i:3">that think</span></span>
+      <span class="line"><span style="--i:4">in production.</span></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-lede">
+        Nithin Kumar Reddy — CS @ PES University. I design multi-agent orchestration,
+        autonomous engineering tools, and cloud-native data pipelines. Contributor to Prowler.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary magnetic" href="#work">Explore work</a>
+        <a class="btn btn-ghost magnetic" href="https://github.com/Nithin078" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-ghost magnetic" href="mailto:nithinkr078@gmail.com">Email</a>
       </div>
     </div>
+    <div class="scroll-hint">scroll</div>
+  </header>
 
-    <section id="projects">
-      <h2>Featured projects</h2>
-      <div class="grid">
-        <article class="card project">
-          <h3>Aegis Engineer</h3>
-          <div class="meta">Python · AST · LSP · multi-agent · GitHub API</div>
-          <p>
-            Autonomous software-engineering platform with a Repository Intelligence Engine.
-            Understands codebases and targets production-ready PR-style fixes for GitHub issues.
-          </p>
-          <div class="links">
-            <a href="https://github.com/Nithin078/Aegis-Engineer">Repository →</a>
-          </div>
-        </article>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span><b>✦</b> Python</span>
+      <span><b>✦</b> FastAPI</span>
+      <span><b>✦</b> Multi-Agent Systems</span>
+      <span><b>✦</b> Azure / Databricks</span>
+      <span><b>✦</b> RAG / LangChain</span>
+      <span><b>✦</b> AWS Security</span>
+      <span><b>✦</b> Playwright</span>
+      <span><b>✦</b> Open Source</span>
+      <span><b>✦</b> Python</span>
+      <span><b>✦</b> FastAPI</span>
+      <span><b>✦</b> Multi-Agent Systems</span>
+      <span><b>✦</b> Azure / Databricks</span>
+      <span><b>✦</b> RAG / LangChain</span>
+      <span><b>✦</b> AWS Security</span>
+      <span><b>✦</b> Playwright</span>
+      <span><b>✦</b> Open Source</span>
+    </div>
+  </div>
 
-        <article class="card project">
-          <h3>Agentic Big Data Pipeline Orchestration</h3>
-          <div class="meta">FastAPI · Azure ADF · Databricks · scikit-learn · React</div>
-          <p>
-            Seven specialized agents plan, size, monitor, and heal ETL pipelines.
-            ML-driven compute sizing cut over-provisioning ~30% in evaluation runs.
-          </p>
-          <div class="links">
-            <a href="https://github.com/Nithin078/Agentic-AI-Driven-Dynamic-Orchestration-of-Big-Data-Pipelines">Repository →</a>
-          </div>
-        </article>
-
-        <article class="card project">
-          <h3>DemoGen</h3>
-          <div class="meta">FastAPI · Playwright · FFmpeg · TTS · React</div>
-          <p>
-            Turn a plain-language product walkthrough into a narrated demo video:
-            plan browser actions, record the UI, synthesize voiceover, compose MP4.
-          </p>
-          <div class="links">
-            <a href="https://github.com/Nithin078/DemoGen">Repository →</a>
-            <a href="#demo">Architecture →</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="opensource">
-      <h2>Open source</h2>
-      <div class="card">
-        <h3 style="margin-top:0">Prowler — cloud security platform</h3>
-        <p style="color:var(--muted); margin-top:0.2rem">
-          <a href="https://github.com/prowler-cloud/prowler/pull/12076">PR #12076</a>
-          adds <code>ec2_instance_stopped_older_than_specific_days</code>: a configurable check that flags
-          EC2 instances left stopped longer than a threshold (default 30 days). Includes service model updates,
-          config schema, unit tests, and docs.
-        </p>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">AWS EC2</span>
-          <span class="chip">Compliance checks</span>
-          <span class="chip">pytest</span>
+  <section class="section-pad" id="about">
+    <div class="about">
+      <div class="about-visual reveal">
+        <img src="assets/panel-neural.jpg" alt="" />
+        <div class="about-badge">
+          <strong>IFSCR · Research Intern</strong>
+          Image provenance · graph forensics · SIFT
         </div>
       </div>
-    </section>
-
-    <section id="demo">
-      <h2>DemoGen pipeline (visual walkthrough)</h2>
-      <div class="card">
-        <p class="lede" style="margin-top:0">
-          End-to-end flow from prompt → plan → record → narrate → compose. Run locally with Docker or Python 3.12+.
-        </p>
-        <div class="flow">Text Prompt
-   │
-   ▼
-┌──────────────┐
-│  DOM Fetch   │  Extract interactable elements from target page
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ LLM Planner  │  OpenRouter / Gemini → structured browser steps
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ TTS Engine   │  gTTS / ElevenLabs narration per step
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ Automation   │  Playwright/Selenium + screen capture
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│  Composer    │  FFmpeg merges video + audio → MP4
-└──────┬───────┘
-       │
-       ▼
-   Demo video output</div>
-        <p style="margin-bottom:0; margin-top:1rem">
-          Quick start: <code>git clone https://github.com/Nithin078/DemoGen && docker build -t demogen .</code>
-          — see README for API keys and local UI.
-        </p>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="eyebrow">// about</div>
+        <h2 class="section-title">Not another chatbot demo. <em>Infrastructure.</em></h2>
+        <div class="about-copy">
+          <p>
+            I ship end-to-end systems — agents that plan and verify, pipelines that resize themselves mid-run,
+            and security checks that land in real open-source scanners.
+          </p>
+          <p>
+            Currently exploring autonomous software engineering, cloud data platforms, and anything where reliability meets intelligence.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>2</b><span>Prowler PRs</span></div>
+          <div class="stat"><b>7</b><span>Agent pipeline</span></div>
+          <div class="stat"><b>Top 4</b><span>National hackathon</span></div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
-      <div>© <span id="y"></span> Nithin Kumar Reddy · Bengaluru</div>
+  <section class="section-pad" id="work">
+    <div class="work-head reveal">
       <div>
-        <a href="mailto:nithinkr078@gmail.com">nithinkr078@gmail.com</a>
-        ·
-        <a href="https://github.com/Nithin078">github.com/Nithin078</a>
+        <div class="eyebrow">// selected work</div>
+        <h2 class="section-title">Projects with <em>teeth.</em></h2>
       </div>
-    </footer>
-  </div>
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+      <p class="work-note">Drag / scroll horizontally · click through to repos</p>
+    </div>
+
+    <div class="work-rail" id="workRail">
+      <article class="project reveal">
+        <div class="project-bg" style="background-image:linear-gradient(135deg,#1a2a00,#050505 50%,#00332e), url('assets/hero-bleed.jpg')"></div>
+        <div class="project-body">
+          <div class="project-idx">01 — OPEN SOURCE</div>
+          <h3>Prowler</h3>
+          <p>Cloud security platform. Shipped AWS EC2 idle-instance checks and SageMaker KMS encryption controls with tests + changelog.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">AWS</span><span class="tag">Compliance</span><span class="tag">pytest</span>
+          </div>
+          <div class="project-links">
+            <a class="magnetic" href="https://github.com/prowler-cloud/prowler/pull/12076" target="_blank" rel="noopener">PR #12076 ↗</a>
+            <a class="magnetic" href="https://github.com/prowler-cloud/prowler/pull/12118" target="_blank" rel="noopener">PR #12118 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" style="transition-delay:.05s">
+        <div class="project-bg" style="background-image:linear-gradient(160deg,rgba(0,40,50,.9),rgba(5,5,5,.95)), url('assets/panel-neural.jpg')"></div>
+        <div class="project-body">
+          <div class="project-idx">02 — AUTONOMOUS ENG</div>
+          <h3>Aegis Engineer</h3>
+          <p>Repository intelligence engine: AST, LSP, semantic search, multi-agent planning → reviewable PR-style fixes for GitHub issues.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">AST</span><span class="tag">LSP</span><span class="tag">Agents</span>
+          </div>
+          <div class="project-links">
+            <a class="magnetic" href="https://github.com/Nithin078/Aegis-Engineer" target="_blank" rel="noopener">Repository ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" style="transition-delay:.1s">
+        <div class="project-bg" style="background:linear-gradient(145deg,#1a1030 0%, #050505 55%, #102218 100%)"></div>
+        <div class="project-body">
+          <div class="project-idx">03 — DATA + AGENTS</div>
+          <h3>Agentic Pipeline Orchestration</h3>
+          <p>Seven specialized agents plan, size, monitor, and heal ETL on Azure Data Factory + Databricks. ~30% less over-provisioning in eval runs.</p>
+          <div class="tags">
+            <span class="tag">FastAPI</span><span class="tag">Azure</span><span class="tag">Databricks</span><span class="tag">ML</span>
+          </div>
+          <div class="project-links">
+            <a class="magnetic" href="https://github.com/Nithin078/Agentic-AI-Driven-Dynamic-Orchestration-of-Big-Data-Pipelines" target="_blank" rel="noopener">Repository ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal" style="transition-delay:.15s">
+        <div class="project-bg" style="background:linear-gradient(160deg,#301018,#050505 60%,#0a2030)"></div>
+        <div class="project-body">
+          <div class="project-idx">04 — PRODUCT DEMOS</div>
+          <h3>DemoGen</h3>
+          <p>Prompt → LLM plan → Playwright record → TTS narration → FFmpeg MP4. Automated product demos without manual recuts every release.</p>
+          <div class="tags">
+            <span class="tag">Playwright</span><span class="tag">FFmpeg</span><span class="tag">TTS</span><span class="tag">React</span>
+          </div>
+          <div class="project-links">
+            <a class="magnetic" href="https://github.com/Nithin078/DemoGen" target="_blank" rel="noopener">Repository ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="oss section-pad" id="oss">
+    <div class="reveal">
+      <div class="eyebrow">// open source</div>
+      <h2 class="section-title">Shipping into <em>other people’s</em> codebases.</h2>
+    </div>
+    <div class="terminal reveal" style="transition-delay:.08s">
+      <div class="terminal-bar">
+        <i class="dot r"></i><i class="dot y"></i><i class="dot g"></i>
+        <span>nithin@prowler — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">➜</span> <span class="cmd">gh pr list --repo prowler-cloud/prowler --author Nithin078</span></div>
+        <div class="out">#12076  feat(ec2): stopped instances older than N days     <span class="ok">OPEN</span></div>
+        <div class="out">#12118  feat(sagemaker): endpoint config KMS encryption  <span class="ok">OPEN</span></div>
+        <div style="margin-top:.8rem"><span class="prompt">➜</span> <span class="cmd">cat why.md</span></div>
+        <div class="out">True open source ≠ personal GitHub stars.</div>
+        <div class="out">It means landing real checks in scanners people actually run.</div>
+        <div style="margin-top:.8rem"><span class="prompt">➜</span> <span class="cmd">open</span>
+          <a href="https://github.com/prowler-cloud/prowler/pull/12076" target="_blank" rel="noopener">pr/12076</a>
+          <a href="https://github.com/prowler-cloud/prowler/pull/12118" target="_blank" rel="noopener">pr/12118</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" id="stack">
+    <div class="reveal">
+      <div class="eyebrow">// stack</div>
+      <h2 class="section-title">Tools I actually <em>reach for.</em></h2>
+    </div>
+    <div class="bento">
+      <div class="bento-card wide tall reveal">
+        <h4>Languages & runtime</h4>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">TypeScript / JS</span><span class="chip">C / C++</span>
+          <span class="chip">Java</span><span class="chip">SQL</span><span class="chip">Bash</span>
+        </div>
+        <p style="margin-top:1.2rem;color:#cfcabf;font-family:var(--font-serif);font-size:1.25rem;">
+          Fast backends, async services, systems-level thinking when it matters.
+        </p>
+      </div>
+      <div class="bento-card reveal" style="transition-delay:.05s">
+        <h4>Cloud & data</h4>
+        <p>Azure ADF · Functions · ADLS · Databricks · Spark · Kafka · AWS · Docker · K8s</p>
+      </div>
+      <div class="bento-card reveal" style="transition-delay:.1s">
+        <h4>AI systems</h4>
+        <p>Multi-agent orchestration · RAG · LangChain · Transformers · scikit-learn</p>
+      </div>
+      <div class="bento-card wide reveal" style="transition-delay:.12s">
+        <h4>Currently obsessed with</h4>
+        <p>Grounded agent tooling that produces reviewable diffs — not free-form chat wrapped in a UI.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-inner reveal">
+      <div class="eyebrow" style="justify-content:center;display:flex">// contact</div>
+      <h2>Let’s build<br /><em>something sharp.</em></h2>
+      <p>Internships · collabs · weird systems ideas — I’m in.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary magnetic" href="mailto:nithinkr078@gmail.com">nithinkr078@gmail.com</a>
+        <a class="btn btn-ghost magnetic" href="https://github.com/Nithin078" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-ghost magnetic" href="https://linkedin.com/in/r-nithin-kumar-reddy" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© <span id="y"></span> Nithin Kumar Reddy</div>
+    <div>Designed in the void · Built for production</div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // loader
+    window.addEventListener("load", () => {
+      setTimeout(() => document.getElementById("loader").classList.add("done"), 1750);
+    });
+
+    // touch detection
+    const isTouch = matchMedia("(hover: none), (pointer: coarse)").matches;
+    if (isTouch) document.body.classList.add("touch");
+
+    // cursor
+    const cur = document.getElementById("cursor");
+    const dot = document.getElementById("cursorDot");
+    let mx = 0, my = 0, cx = 0, cy = 0;
+    if (!isTouch) {
+      window.addEventListener("mousemove", (e) => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+      });
+      (function loop() {
+        cx += (mx - cx) * 0.18;
+        cy += (my - cy) * 0.18;
+        cur.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%)`;
+        requestAnimationFrame(loop);
+      })();
+      document.querySelectorAll("a, button, .magnetic, .project").forEach((el) => {
+        el.addEventListener("mouseenter", () => cur.classList.add("hover"));
+        el.addEventListener("mouseleave", () => cur.classList.remove("hover"));
+      });
+    }
+
+    // magnetic buttons
+    if (!isTouch) {
+      document.querySelectorAll(".magnetic").forEach((el) => {
+        el.addEventListener("mousemove", (e) => {
+          const r = el.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+        });
+        el.addEventListener("mouseleave", () => {
+          el.style.transform = "";
+        });
+      });
+    }
+
+    // reveal on scroll
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) en.target.classList.add("in");
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // horizontal wheel → rail
+    const rail = document.getElementById("workRail");
+    if (rail && !isTouch) {
+      rail.addEventListener(
+        "wheel",
+        (e) => {
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            rail.scrollLeft += e.deltaY;
+          }
+        },
+        { passive: false }
+      );
+    }
+
+    // subtle parallax on hero orbs
+    if (!isTouch) {
+      window.addEventListener("mousemove", (e) => {
+        const px = (e.clientX / innerWidth - 0.5) * 20;
+        const py = (e.clientY / innerHeight - 0.5) * 20;
+        document.querySelectorAll(".hero-orb").forEach((orb, i) => {
+          const s = i === 0 ? 1 : -1;
+          orb.style.transform = `translate(${px * s}px, ${py * s}px)`;
+        });
+      });
+    }
+  </script>
 </body>
 </html>
