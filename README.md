@@ -7,7 +7,7 @@ Dark landing portfolio for **Nithin Kumar Reddy** (Chris Nonso–style layout).
 ## Contents
 
 - Full-viewport dark landing + 2×2 nav tiles
-- Soft yellow **Download Resume** → `resume/Nithin_Kumar_Reddy.pdf`
+- Soft yellow **Download Resume** → `resume/Nithin_Kumar_Reddy.pdf` (current)
 - Sections: About, Projects, Open Source, Contact
 
 ## Local preview
