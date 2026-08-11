@@ -704,13 +704,13 @@
     .doc-body {
       flex: 1;
       min-height: 0;
-      padding: 12px 14px;
+      padding: 14px 16px;
       font-family: var(--mono);
       font-size: 12px;
       line-height: 1.55;
       color: #111;
       overflow: auto;
-      white-space: pre-wrap;
+      white-space: normal;
       word-break: break-word;
     }
 
@@ -719,15 +719,15 @@
       font-size: 13px;
       margin: 0 0 8px;
       border-bottom: 1px solid #ccc;
-      padding-bottom: 4px;
+      padding-bottom: 5px;
     }
 
-    .doc-body p { margin: 0 0 8px; white-space: normal; }
+    .doc-body p { margin: 0 0 10px; }
     .doc-body ul {
-      margin: 0 0 8px 1.1rem;
-      white-space: normal;
+      margin: 0 0 10px 1.15rem;
+      padding: 0;
     }
-    .doc-body li { margin-bottom: 4px; }
+    .doc-body li { margin-bottom: 5px; }
     .doc-body a {
       color: #0000ee;
       text-decoration: underline;
@@ -736,15 +736,13 @@
     .doc-body .meta {
       color: #555;
       font-size: 11px;
-      margin-bottom: 10px;
-      white-space: normal;
+      margin: 0 0 12px;
     }
     .doc-body .chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 5px;
       margin-top: 8px;
-      white-space: normal;
     }
     .doc-body .chip {
       border: 1px solid #888;
@@ -1263,12 +1261,27 @@ Starting Windows ........</div>
         title: "achievements.txt",
         html: `
           <h3>achievements.txt</h3>
+          <p class="meta">Achievements &amp; certifications · from resume</p>
           <ul>
-            <li><b>Top 4</b> — FASTATHON, SRM University All-India Hackathon</li>
-            <li><b>Top 4</b> — Space Race Hackathon, Equinox Club, PES University</li>
-            <li>Participant — Adobe India Hackathon</li>
-            <li>Oracle Cloud Infrastructure — AI Foundations Associate</li>
-            <li>HackerRank — Problem Solving (Intermediate)</li>
+            <li>
+              <b>Top 4</b> — FASTATHON, SRM University All-India Hackathon
+              · <a href="https://unstop.com/certificate-preview/0fa58234-11f1-4f76-8573-0803c34b5d82" target="_blank" rel="noopener">[cert]</a>
+            </li>
+            <li>
+              <b>Top 4</b> — Space Race Hackathon, Equinox Club, PES University
+            </li>
+            <li>
+              Participant — Adobe India Hackathon
+              · <a href="https://unstop.com/certificate-preview/63b0d3af-b409-4b46-84e7-c3b0faf79857" target="_blank" rel="noopener">[cert]</a>
+            </li>
+            <li>
+              Oracle Cloud Infrastructure — AI Foundations Associate
+              · <a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=007EE032400E61BFC613E69FBE7E090B45A5C80B3308D964F3EA20C50628E4A5" target="_blank" rel="noopener">[badge]</a>
+            </li>
+            <li>
+              HackerRank — Problem Solving (Intermediate)
+              · <a href="https://www.hackerrank.com/skills-verification/problem_solving_intermediate" target="_blank" rel="noopener">[skill]</a>
+            </li>
           </ul>
         `,
       },
