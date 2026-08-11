@@ -1,14 +1,10 @@
 # nithin078.github.io
 
-Dark landing portfolio for **Nithin Kumar Reddy** (Chris Nonso–style layout).
+**NithinOS** — Windows XP–style desktop portfolio for **Nithin Kumar Reddy**.
+
+Sections are **folders**. Content lives in **files**. Open, drag, resize, and maximize windows.
 
 **Live:** https://nithin078.github.io
-
-## Contents
-
-- Full-viewport dark landing + 2×2 nav tiles
-- Soft yellow **Download Resume** → `resume/Nithin_Kumar_Reddy.pdf` (current)
-- Sections: About, Projects, Open Source, Contact
 
 ## Local preview
 

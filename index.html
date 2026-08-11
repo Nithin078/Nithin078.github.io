@@ -2,1127 +2,2055 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Nithin Kumar Reddy</title>
-  <meta name="description" content="Nithin Kumar Reddy — software engineer. Multi-agent systems, cloud pipelines, open source." />
+  <meta name="description" content="Nithin Kumar Reddy — Windows XP style portfolio. Multi-agent systems, cloud pipelines, open source." />
   <meta property="og:title" content="Nithin Kumar Reddy" />
-  <meta property="og:description" content="Software engineer · multi-agent systems · cloud · open source" />
+  <meta property="og:description" content="Open folders. Read files. Resize windows. Classic XP portfolio." />
   <meta property="og:url" content="https://nithin078.github.io" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Tahoma:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #1c1c1c;
-      --bg-deep: #161616;
-      --border: rgba(255, 255, 255, 0.28);
-      --border-soft: rgba(255, 255, 255, 0.12);
-      --text: #f2f2f2;
-      --muted: #9b9b9b;
-      --yellow: #f0e6a6;
-      --yellow-text: #1a1a1a;
-      --social: #2a2a2a;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --silver: #ece9d8;
+      --silver-dk: #aca899;
+      --silver-lt: #ffffff;
+      --white: #ffffff;
+      --black: #000000;
+      --navy: #0a246a;
+      --xp-blue: #245edb;
+      --xp-blue-mid: #3c81f3;
+      --xp-blue-lt: #a9c7f5;
+      --xp-task: #245edc;
+      --xp-start: #3c8d0d;
+      --xp-start-hi: #5cba2c;
+      --xp-close: #e15c4f;
+      --desktop: #3a6ea5;
+      --font: Tahoma, "MS Sans Serif", "Segoe UI", sans-serif;
+      --mono: "Lucida Console", "IBM Plex Mono", "Courier New", monospace;
+      --taskbar-h: 42px;
+      --title-h: 26px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Inter, system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* —— Hero landing (full viewport) —— */
-    .hero {
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      width: min(1100px, calc(100% - 3rem));
-      margin: 0 auto;
-      padding: 1.6rem 0 1.4rem;
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font);
+      background: #0d0d0d;
+      color: var(--black);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
     }
 
-    .logo {
-      text-align: center;
-      font-size: 1.05rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-      padding: 0.4rem 0 1.5rem;
-      opacity: 0.95;
-    }
-
-    .logo a:hover { color: var(--yellow); }
-
-    .main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1.15fr 0.95fr;
-      gap: clamp(2rem, 5vw, 3.5rem);
-      align-items: center;
-    }
-
-    @media (max-width: 860px) {
-      .main {
-        grid-template-columns: 1fr;
-        gap: 2.25rem;
-        padding: 0.5rem 0 1.5rem;
-      }
-      .hero { min-height: auto; padding-bottom: 2rem; }
-    }
-
-    .hello {
-      color: var(--yellow);
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 0.6rem;
-    }
-
-    h1 {
-      font-size: clamp(1.85rem, 4.2vw, 2.45rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 1rem;
-      line-height: 1.18;
-    }
-
-    .bio {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.75;
-      max-width: 40ch;
-      margin-bottom: 1.75rem;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--yellow);
-      color: var(--yellow-text);
-      font-weight: 600;
-      font-size: 0.9rem;
-      padding: 0.9rem 1.4rem;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s var(--ease), filter 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.04);
-      box-shadow: 0 8px 24px rgba(240, 230, 166, 0.18);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .tile {
-      aspect-ratio: 1.05;
-      border: 1px solid var(--border);
-      border-radius: 4px;
+    /* —— Laptop chassis —— */
+    .laptop {
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.9rem;
-      color: #e8e8e8;
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.25s var(--ease);
+      padding: clamp(4px, 0.6vw, 8px);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, #2a2a2a, #0a0a0a);
     }
 
-    .tile:hover {
-      border-color: rgba(255, 255, 255, 0.55);
-      background: rgba(255, 255, 255, 0.03);
-      transform: translateY(-3px);
-    }
-
-    .tile svg {
-      width: 28px;
-      height: 28px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .tile span {
-      font-size: 0.92rem;
-      font-weight: 400;
-    }
-
-    .socials {
+    .screen-bezel {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #3f3f3f, #1c1c1c 40%, #121212);
+      border-radius: 10px 10px 4px 4px;
+      padding: 8px 8px 10px;
+      box-shadow:
+        0 0 0 1px #0a0a0a,
+        0 12px 32px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
       display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      padding: 1.75rem 0 0.25rem;
+      flex-direction: column;
+      position: relative;
     }
 
-    .social {
-      width: 36px;
-      height: 36px;
+    .webcam {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--social);
+      background: #222;
+      box-shadow: inset 0 0 0 1px #444, 0 0 4px #000;
+      margin: 0 auto 6px;
+    }
+
+    .screen {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #000;
+      box-shadow:
+        inset 0 0 0 1px #4a4a4a,
+        inset 0 0 40px rgba(0, 0, 0, 0.15);
+      /* Bliss-inspired XP wallpaper */
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 100%, rgba(255, 220, 120, 0.35) 0%, transparent 45%),
+        linear-gradient(180deg,
+          #5ba3e0 0%,
+          #7eb8e8 28%,
+          #a8d0ef 48%,
+          #7cb342 52%,
+          #5a9e2e 68%,
+          #3d7a1f 100%);
+    }
+
+    .brand {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: #666;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+
+    /* —— Desktop icons —— */
+    .desktop {
+      position: absolute;
+      inset: 0;
+      padding: 14px 10px 58px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 10px 8px;
+      z-index: 1;
+    }
+
+    .desk-icon {
+      width: 104px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: default;
+      font: inherit;
+      color: #fff;
+      text-shadow: 1px 1px 1px #000;
+    }
+
+    .desk-icon:focus,
+    .desk-icon.selected {
+      outline: none;
+      background: rgba(49, 106, 197, 0.45);
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    .desk-icon:active { transform: translate(1px, 1px); }
+
+    .icon-art {
+      width: 48px;
+      height: 44px;
+      image-rendering: pixelated;
       display: grid;
       place-items: center;
-      color: #ddd;
-      transition: background 0.2s ease, transform 0.2s var(--ease), color 0.2s ease;
+      font-size: 36px;
+      line-height: 1;
+      filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.4));
     }
 
-    .social:hover {
-      background: #3a3a3a;
-      color: var(--yellow);
-      transform: translateY(-2px);
+    .desk-icon .label {
+      font-size: 12.5px;
+      text-align: center;
+      line-height: 1.25;
+      max-width: 96px;
+      word-break: break-word;
+      text-shadow:
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
     }
 
-    .social svg {
-      width: 15px;
-      height: 15px;
-      fill: currentColor;
-    }
-
-    /* —— Below-fold content —— */
-    .section {
-      background: var(--bg-deep);
-      border-top: 1px solid var(--border-soft);
-      padding: clamp(3.5rem, 8vw, 5.5rem) 0;
-    }
-
-    .section-inner {
-      width: min(900px, calc(100% - 3rem));
-      margin: 0 auto;
-    }
-
-    .section-label {
-      color: var(--yellow);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .section h2 {
-      font-size: clamp(1.5rem, 3vw, 1.85rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.75rem;
-    }
-
-    .about-text {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      max-width: 62ch;
-    }
-
-    .about-text p + p { margin-top: 1rem; }
-
-    .about-text a {
-      color: var(--yellow);
-      border-bottom: 1px solid rgba(240, 230, 166, 0.35);
-    }
-
-    .about-text a:hover { border-bottom-color: var(--yellow); }
-
-    .about-lead {
-      color: var(--text);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 58ch;
-      margin-bottom: 0.85rem;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.9fr;
-      gap: 1rem;
-      margin-top: 1.75rem;
-    }
-
-    @media (max-width: 720px) {
-      .about-grid { grid-template-columns: 1fr; }
-    }
-
-    .about-card {
-      border: 1px solid var(--border-soft);
-      border-radius: 8px;
-      padding: 1.25rem 1.3rem;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .about-card h3 {
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 0.85rem;
-    }
-
-    .edu-school {
-      font-weight: 600;
-      font-size: 1.02rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .edu-degree {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 0.55rem;
-    }
-
-    .edu-meta {
+    /* Explorer chrome (folders) */
+    .explorer-bar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem 1rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.85rem;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 6px;
+      background: linear-gradient(180deg, #f5f4ea 0%, #ece9d8 100%);
+      border-bottom: 1px solid #aca899;
+      flex-shrink: 0;
+    }
+    .ex-btn {
+      min-width: 28px;
+      height: 24px;
+      padding: 0 6px;
+      font-size: 12px;
+      font-family: var(--font);
+      background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+      border: 1px solid #aca899;
+      border-radius: 3px;
+      color: #222;
+      cursor: default;
+    }
+    .ex-btn:hover { border-color: #316ac5; background: #e8f0fc; }
+    .ex-btn:disabled { opacity: 0.45; }
+    .ex-addr {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      height: 24px;
+      padding: 0 8px;
+      font-size: 11px;
+      background: #fff;
+      border: 1px solid #7f9db9;
+      color: #222;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ex-addr b { font-weight: 600; color: #316ac5; }
+
+    .explorer-side {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+    .explorer-nav {
+      width: 140px;
+      flex-shrink: 0;
+      background: linear-gradient(180deg, #7ba2e7 0%, #6375d6 100%);
+      color: #fff;
+      padding: 10px 8px;
+      font-size: 11px;
+      overflow: auto;
+    }
+    .explorer-nav h4 {
+      font-size: 11px;
+      margin: 0 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    }
+    .explorer-nav button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font: inherit;
+      font-size: 11px;
+      padding: 5px 4px;
+      cursor: default;
+      border-radius: 2px;
+    }
+    .explorer-nav button:hover {
+      background: rgba(255,255,255,0.18);
+    }
+    .explorer-nav button.current {
+      background: rgba(255,255,255,0.28);
+      font-weight: 700;
+    }
+    .explorer-main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
     }
 
-    .edu-meta span {
+    /* Welcome balloon */
+    .balloon {
+      position: absolute;
+      right: 12px;
+      bottom: calc(var(--taskbar-h) + 14px);
+      width: min(280px, calc(100% - 24px));
+      z-index: 12000;
+      background: #ffffe1;
+      border: 1px solid #000;
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+      padding: 10px 12px 12px;
+      font-size: 11px;
+      color: #000;
+      display: none;
+    }
+    .balloon.show { display: block; animation: balloon-in 0.25s ease; }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      right: 48px;
+      bottom: -9px;
+      border: 8px solid transparent;
+      border-top-color: #ffffe1;
+      filter: drop-shadow(0 1px 0 #000);
+    }
+    .balloon-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+    .balloon-x {
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      cursor: default;
+      color: #666;
+      line-height: 1;
+    }
+    .balloon-x:hover { color: #000; }
+    @keyframes balloon-in {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Quick Launch */
+    .quick-launch {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 0 6px;
+      border-right: 1px solid rgba(0,0,0,0.2);
+      margin-right: 6px;
+      height: 34px;
+    }
+    .ql-btn {
+      width: 32px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      background: transparent;
+      color: #fff;
+      font-size: 18px;
+      cursor: default;
+      padding: 0;
+      line-height: 1;
+    }
+    .ql-btn:hover {
+      border-color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* XP Start menu layout */
+    .start-menu {
+      flex-direction: column;
+      width: min(380px, calc(100% - 12px));
+      height: auto;
+      max-height: min(480px, calc(100% - var(--taskbar-h) - 16px));
+      border-radius: 0 8px 0 0;
+      overflow: hidden;
+    }
+    .start-user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: linear-gradient(180deg, #1a4cb8 0%, #245edb 40%, #1a4cb8 100%);
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .start-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      border: 2px solid #fff;
+      background:
+        linear-gradient(145deg, #7ec8ff, #245edb);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+    }
+    .start-user-name {
+      font-weight: 700;
+      font-size: 14px;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+    }
+    .start-user-sub {
+      font-size: 10px;
+      opacity: 0.9;
+    }
+    .start-body {
+      display: flex;
+      flex: 1;
+      min-height: 220px;
+      background: #fff;
+    }
+    .start-left {
+      flex: 1.15;
+      padding: 6px 0;
+      border-right: 1px solid #d6d2c2;
+      background: #fff;
+      overflow: auto;
+    }
+    .start-right {
+      flex: 0.95;
+      padding: 6px 0;
+      background: #d3e5fa;
+      overflow: auto;
+    }
+    .start-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      padding: 6px 8px;
+      background: linear-gradient(180deg, #245edb 0%, #1941a5 100%);
+      flex-shrink: 0;
+    }
+    .start-footer button {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 6px;
+      padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 3px;
+      background: transparent;
+      color: #fff;
+      font: inherit;
+      font-size: 11px;
+      cursor: default;
+    }
+    .start-footer button:hover {
+      background: rgba(255,255,255,0.12);
+    }
+    .start-item-lg {
+      padding: 8px 12px;
+      gap: 10px;
+    }
+    .start-item-lg .si { font-size: 20px; width: 24px; }
+    .start-item-lg .si-text { display: flex; flex-direction: column; gap: 1px; }
+    .start-item-lg .si-main { font-weight: 600; font-size: 12px; }
+    .start-item-lg .si-sub { font-size: 10px; opacity: 0.75; }
+    .start-item-lg:hover .si-sub { opacity: 0.95; }
+
+    /* —— Windows XP windows —— */
+    .window-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
     }
 
-    .edu-meta span::before {
+    .win {
+      position: absolute;
+      min-width: 220px;
+      min-height: 140px;
+      max-width: none;
+      max-height: none;
+      display: flex;
+      flex-direction: column;
+      background: var(--silver);
+      border: 3px solid var(--xp-blue);
+      border-radius: 8px 8px 0 0;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+      pointer-events: auto;
+      overflow: hidden;
+    }
+
+    .win.active {
+      border-color: var(--xp-blue);
+    }
+
+    .win:not(.active) {
+      border-color: #7a96df;
+      opacity: 0.97;
+    }
+
+    .win.active .titlebar {
+      background: linear-gradient(
+        180deg,
+        #0a246a 0%,
+        #0a246a 4%,
+        #245edb 8%,
+        #3c81f3 45%,
+        #1664d8 88%,
+        #0c4cb8 100%
+      );
+    }
+
+    .win:not(.active) .titlebar {
+      background: linear-gradient(180deg, #7a96df 0%, #9db9eb 50%, #7a96df 100%);
+    }
+
+    .titlebar {
+      height: var(--title-h);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 4px 0 6px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: grab;
+      flex-shrink: 0;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    }
+
+    .titlebar:active { cursor: grabbing; }
+
+    .titlebar .t-icon {
+      font-size: 14px;
+      line-height: 1;
+      filter: drop-shadow(0 1px 0 rgba(0,0,0,0.3));
+    }
+
+    .titlebar .t-text {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .t-btns {
+      display: flex;
+      gap: 2px;
+    }
+
+    .t-btn {
+      width: 21px;
+      height: 21px;
+      font-size: 11px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(180deg, #3c81f3 0%, #245edb 100%);
+      border: 1px solid #fff;
+      border-radius: 3px;
+      color: #fff;
+      font-family: var(--font);
+      font-weight: 700;
+      padding: 0;
+      cursor: default;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+      text-shadow: 0 0 1px #000;
+    }
+
+    .t-btn:hover {
+      filter: brightness(1.12);
+    }
+
+    .t-btn:active {
+      filter: brightness(0.92);
+    }
+
+    .t-btn.close {
+      background: linear-gradient(180deg, #e97a6e 0%, #c63b2d 55%, #a8281c 100%);
+    }
+
+    .t-btn.max {
+      font-size: 10px;
+    }
+
+    /* Resize handles */
+    .rz {
+      position: absolute;
+      z-index: 5;
+      background: transparent;
+    }
+    .rz-n  { top: 0; left: 8px; right: 8px; height: 5px; cursor: n-resize; }
+    .rz-s  { bottom: 0; left: 8px; right: 8px; height: 6px; cursor: s-resize; }
+    .rz-e  { right: 0; top: 8px; bottom: 8px; width: 6px; cursor: e-resize; }
+    .rz-w  { left: 0; top: 8px; bottom: 8px; width: 5px; cursor: w-resize; }
+    .rz-ne { top: 0; right: 0; width: 10px; height: 10px; cursor: ne-resize; }
+    .rz-nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nw-resize; }
+    .rz-se { bottom: 0; right: 0; width: 12px; height: 12px; cursor: se-resize; }
+    .rz-sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: sw-resize; }
+    .rz-se::after {
       content: "";
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--yellow);
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      width: 8px;
+      height: 8px;
+      background:
+        linear-gradient(135deg, transparent 50%, #245edb 50%) ,
+        linear-gradient(135deg, transparent 60%, #7a96df 60%);
       opacity: 0.7;
     }
 
-    .coursework {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.55;
+    .win.maximized .rz { display: none; }
+    .win.maximized {
+      border-radius: 0;
     }
 
-    .coursework strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .skill-groups {
+    .win-menu {
       display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
+      gap: 2px;
+      padding: 2px 4px;
+      font-size: 11px;
+      border-bottom: 1px solid var(--silver-dk);
+      background: var(--silver);
+      flex-shrink: 0;
     }
 
-    .skill-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
+    .win-menu span {
+      padding: 1px 6px;
+      border: 1px solid transparent;
     }
 
-    .skill-label {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .win-menu span:hover {
+      background: var(--xp-blue);
+      color: #fff;
     }
 
-    .skill-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
+    .win-menu span u { text-decoration: underline; }
 
-    .skill-chip {
-      font-size: 0.74rem;
-      color: #d8d8d8;
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 0.22rem 0.55rem;
-      background: rgba(255, 255, 255, 0.025);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-      margin-top: 1.75rem;
-    }
-
-    @media (max-width: 720px) {
-      .stats { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 420px) {
-      .stats { grid-template-columns: 1fr; }
-    }
-
-    .stat {
-      border: 1px solid var(--border-soft);
-      border-radius: 6px;
-      padding: 1.05rem 1.1rem;
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .stat b {
-      display: block;
-      font-size: 1.25rem;
-      color: var(--yellow);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.2rem;
-    }
-
-    .stat span {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.35;
-    }
-
-    .exp-list {
-      list-style: none;
-      margin-top: 0.75rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-
-    .exp-list li {
-      position: relative;
-      padding-left: 1rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-    .exp-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(240, 230, 166, 0.55);
-    }
-
-    .achieve-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin-top: 0.25rem;
-    }
-
-    .achieve-item {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.35rem 1rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border-soft);
-    }
-
-    .achieve-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .achieve-item:first-child { padding-top: 0; }
-
-    .achieve-title {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .achieve-title em {
-      font-style: normal;
-      color: var(--yellow);
-      font-weight: 600;
-    }
-
-    .achieve-meta {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .about-cta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.85rem 1.15rem;
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-soft);
-    }
-
-    .about-cta p {
-      color: var(--muted);
-      font-size: 0.9rem;
+    .win-body {
       flex: 1;
-      min-width: 16rem;
-      max-width: 42ch;
-      line-height: 1.55;
-    }
-
-    .projects {
+      min-height: 0;
+      margin: 0 3px;
+      background: var(--white);
+      border: 1px solid #7f9db9;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
     }
 
-    .project {
-      display: grid;
-      grid-template-columns: 3rem 1fr;
-      gap: 0.85rem 1.15rem;
-      align-items: start;
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 1.3rem 1.35rem 1.25rem;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012));
-      position: relative;
+    .win-status {
+      height: 20px;
+      margin: 2px 3px 3px;
+      padding: 0 6px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--silver);
+      border: 1px solid var(--silver-dk);
+      color: #222;
+      flex-shrink: 0;
+    }
+
+    /* Folder grid of files */
+    .file-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 4px 2px;
+      padding: 10px 8px;
+      overflow: auto;
+      height: 100%;
+      background: var(--white);
+    }
+
+    .file-icon {
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 5px;
+      border: 1px dotted transparent;
+      background: transparent;
+      cursor: default;
+      font: inherit;
+      color: #000;
+    }
+
+    .file-icon:focus,
+    .file-icon.selected {
+      outline: none;
+      background: #316ac5;
+      color: #fff;
+      border-color: #fff;
+    }
+
+    .file-icon .f-art {
+      font-size: 34px;
+      line-height: 1;
+      filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.15));
+    }
+
+    .file-icon .f-label {
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.2;
+      max-width: 92px;
+      word-break: break-word;
+    }
+
+    /* Text document view */
+    .doc {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #ffffee;
       overflow: hidden;
-      transition:
-        border-color 0.25s ease,
-        transform 0.28s var(--ease),
-        background 0.25s ease,
-        box-shadow 0.28s ease;
     }
 
-    .project::before {
-      content: "";
+    .doc-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 3px 8px;
+      font-size: 11px;
+      background: var(--silver);
+      border-bottom: 1px solid var(--silver-dk);
+      color: #333;
+      flex-shrink: 0;
+    }
+
+    .doc-body {
+      flex: 1;
+      min-height: 0;
+      padding: 12px 14px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.55;
+      color: #111;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .doc-body h3 {
+      font-family: var(--font);
+      font-size: 13px;
+      margin: 0 0 8px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+    }
+
+    .doc-body p { margin: 0 0 8px; white-space: normal; }
+    .doc-body ul {
+      margin: 0 0 8px 1.1rem;
+      white-space: normal;
+    }
+    .doc-body li { margin-bottom: 4px; }
+    .doc-body a {
+      color: #0000ee;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .doc-body .meta {
+      color: #555;
+      font-size: 11px;
+      margin-bottom: 10px;
+      white-space: normal;
+    }
+    .doc-body .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+      white-space: normal;
+    }
+    .doc-body .chip {
+      border: 1px solid #888;
+      background: #f0f0f0;
+      padding: 1px 6px;
+      font-size: 10px;
+      font-family: var(--font);
+    }
+
+    /* —— XP Taskbar —— */
+    .taskbar {
       position: absolute;
       left: 0;
-      top: 0;
+      right: 0;
       bottom: 0;
-      width: 3px;
-      background: var(--yellow);
-      opacity: 0;
-      transition: opacity 0.25s ease;
+      height: var(--taskbar-h);
+      background: linear-gradient(
+        180deg,
+        #3f8cf3 0%,
+        #245edc 8%,
+        #245edc 88%,
+        #1941a5 100%
+      );
+      border-top: 1px solid #0831d9;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px 4px 3px;
+      z-index: 10000;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
     }
 
-    .project:hover {
-      border-color: rgba(240, 230, 166, 0.28);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      transform: translateY(-3px);
-      box-shadow:
-        0 14px 36px rgba(0, 0, 0, 0.28),
-        0 0 0 1px rgba(240, 230, 166, 0.06);
+    .start-btn {
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 18px 0 8px;
+      font-weight: 700;
+      font-size: 15px;
+      font-style: italic;
+      font-family: var(--font);
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45);
+      background: linear-gradient(180deg, #5cba2c 0%, #3c8d0d 55%, #2d6b09 100%);
+      border: 1px solid #1f5a08;
+      border-radius: 0 14px 14px 0 / 0 16px 16px 0;
+      cursor: default;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
 
-    .project:hover::before { opacity: 1; }
+    .start-btn:hover {
+      filter: brightness(1.08);
+    }
 
-    .project-index {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--yellow);
-      opacity: 0.75;
-      padding-top: 0.2rem;
+    .start-btn:active,
+    .start-btn.open {
+      filter: brightness(0.92);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+    }
+
+    .start-logo {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+      background: linear-gradient(135deg, #e11 0 50%, #0a0 50% 100%),
+                  linear-gradient(45deg, #08f 0 50%, #fd0 50% 100%);
+      background-size: 50% 50%;
+      background-position: 0 0, 100% 0, 0 100%, 100% 100%;
+      background-repeat: no-repeat;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+    }
+
+    .task-btns {
+      flex: 1;
+      display: flex;
+      gap: 4px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .task-btn {
+      height: 32px;
+      max-width: 180px;
+      min-width: 100px;
+      flex: 0 1 auto;
+      padding: 0 12px;
+      font-size: 12.5px;
+      font-family: var(--font);
+      text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+      background: linear-gradient(180deg, #3c81f3 0%, #245edb 100%);
+      border: 1px solid #0831d9;
+      border-radius: 3px;
+      cursor: default;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .task-btn.active {
+      background: linear-gradient(180deg, #1a4cb8 0%, #163f9a 100%);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
+      font-weight: 700;
+    }
+
+    .tray {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 32px;
+      padding: 0 12px;
+      color: #fff;
+      font-size: 14px;
+      font-family: var(--font);
+      background: linear-gradient(180deg, #19a3ef 0%, #0d7ec8 100%);
+      border: 1px solid #0a5a9a;
+      border-radius: 3px;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.3);
+    }
+    .tray #clock {
+      font-size: 12.5px;
       font-variant-numeric: tabular-nums;
     }
 
-    .project-main {
-      min-width: 0;
+    /* Start menu XP (base position) */
+    .start-menu {
+      position: absolute;
+      left: 2px;
+      bottom: calc(var(--taskbar-h) + 2px);
+      background: var(--silver);
+      border: 1px solid #0055ea;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.35);
+      z-index: 10001;
+      display: none;
     }
 
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      margin-bottom: 0.55rem;
-      flex-wrap: wrap;
-    }
+    .start-menu.open { display: flex; }
 
-    .project-title {
-      font-size: 1.08rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      transition: color 0.2s ease;
-    }
-
-    .project:hover .project-title { color: var(--yellow); }
-
-    .project-year {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--muted);
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 0.22rem 0.6rem;
-      background: rgba(0, 0, 0, 0.2);
-      white-space: nowrap;
-    }
-
-    .project-desc {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.65;
-      margin-bottom: 1rem;
-      max-width: 58ch;
-    }
-
-    .project-foot {
+    .start-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 0.85rem;
-      flex-wrap: wrap;
+      gap: 8px;
+      width: 100%;
+      padding: 7px 12px;
+      border: none;
+      background: transparent;
+      font: inherit;
+      font-size: 12px;
+      text-align: left;
+      cursor: default;
+      color: #000;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
+    .start-item:hover,
+    .start-item:focus {
+      background: #316ac5;
+      color: #fff;
+      outline: none;
     }
 
-    .tag {
-      font-size: 0.72rem;
-      color: #b8b8b8;
-      border: 1px solid var(--border-soft);
-      border-radius: 999px;
-      padding: 0.22rem 0.58rem;
-      background: rgba(255, 255, 255, 0.03);
-      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-    }
-
-    .project:hover .tag {
-      border-color: rgba(240, 230, 166, 0.18);
-      color: #d4d4d4;
-    }
-
-    .project-go {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--muted);
-      white-space: nowrap;
-      transition: color 0.2s ease, transform 0.25s var(--ease);
-    }
-
-    .project:hover .project-go {
-      color: var(--yellow);
-      transform: translateX(3px);
-    }
-
-    @media (max-width: 520px) {
-      .project {
-        grid-template-columns: 1fr;
-        gap: 0.35rem;
-      }
-      .project-index { padding-top: 0; }
-    }
-
-    .exp-block {
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-soft);
-    }
-
-    .exp-title {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .exp-meta {
-      font-size: 0.8rem;
-      color: var(--yellow);
-      margin-bottom: 0.5rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--border-soft);
-      padding: 1.5rem;
+    .start-item .si {
+      font-size: 16px;
+      width: 20px;
       text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: var(--bg-deep);
     }
 
-    footer a {
-      color: var(--muted);
+    .start-sep {
+      height: 1px;
+      margin: 4px 8px;
+      background: #d8d2bd;
+      border-bottom: 1px solid #fff;
     }
 
-    footer a:hover { color: var(--yellow); }
+    .start-right .start-item {
+      font-weight: 600;
+    }
+
+    /* Welcome splash */
+    .welcome {
+      position: absolute;
+      inset: 0;
+      z-index: 20000;
+      background: linear-gradient(180deg, #0a246a 0%, #245edb 40%, #5ba3e0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: var(--font);
+      cursor: pointer;
+    }
+
+    .welcome.hidden { display: none; }
+
+    .welcome h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    }
+
+    .welcome p {
+      font-size: 13px;
+      opacity: 0.95;
+      margin-bottom: 18px;
+    }
+
+    .welcome .boot {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #d6ebff;
+      margin-bottom: 20px;
+      text-align: left;
+      width: min(320px, 80%);
+      white-space: pre-line;
+    }
+
+    .welcome .press {
+      border: 1px solid #1f5a08;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #5cba2c 0%, #3c8d0d 100%);
+      color: #fff;
+      padding: 8px 18px;
+      font-weight: 700;
+      font-size: 12px;
+      font-family: var(--font);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    /* Mobile note */
+    @media (max-width: 520px) {
+      .laptop { padding: 3px; }
+      .screen-bezel {
+        border-radius: 8px;
+        padding: 5px 5px 6px;
+      }
+      .webcam, .brand { display: none; }
+      .desk-icon { width: 88px; }
+      .icon-art { font-size: 30px; width: 40px; height: 38px; }
+      .desk-icon .label { font-size: 11px; max-width: 84px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .desk-icon:active { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <!-- Landing (matches reference layout) -->
-  <header class="hero" id="top">
-    <div class="logo"><a href="#top">NithinKR</a></div>
+  <div class="laptop">
+    <div class="screen-bezel">
+      <div class="webcam" aria-hidden="true"></div>
+      <div class="screen" id="screen">
+        <!-- Boot / welcome -->
+        <div class="welcome" id="welcome" role="dialog" aria-label="Welcome">
+          <div class="boot" id="bootLog">Microsoft Windows XP
+Copyright © 1985-2001 Microsoft Corp.
+NithinOS build 2600
 
-    <div class="main">
-      <section>
-        <div class="hello">Hello</div>
-        <h1>I'm Nithin Kumar Reddy</h1>
-        <p class="bio">
-          CSE undergrad building production-oriented AI systems: multi-agent orchestration,
-          Azure/Databricks pipelines, and autonomous developer tooling. PES University · Bengaluru.
-        </p>
-        <a class="btn" href="resume/Nithin_Kumar_Reddy.pdf" download="Nithin_Kumar_Reddy_Resume.pdf">
-          Download Resume
-        </a>
-      </section>
-
-      <nav class="grid" aria-label="Primary">
-        <a class="tile" href="#projects">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/>
-            <path d="M12 11v5M9.5 13.5h5"/>
-          </svg>
-          <span>My Projects</span>
-        </a>
-        <a class="tile" href="#about">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="8" r="3.5"/>
-            <path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/>
-            <path d="M17.5 4.5l1.2 1.8 2 .4-1.4 1.5.3 2-1.8-1-1.8 1 .3-2-1.4-1.5 2-.4z"/>
-          </svg>
-          <span>About me</span>
-        </a>
-        <a class="tile" href="#opensource">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 20h9"/>
-            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3 2.12 2.12 0 0 1 0 3L7 19l-4 1 1-4L16.5 3.5z"/>
-          </svg>
-          <span>Open Source</span>
-        </a>
-        <a class="tile" href="#contact">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2"/>
-            <path d="M3 7l9 6 9-6"/>
-          </svg>
-          <span>Contact me</span>
-        </a>
-      </nav>
-    </div>
-
-    <div class="socials">
-      <a class="social" href="https://github.com/Nithin078" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 8.2 22.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.7 1.6 2.6 1.1.1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.2s1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2a4.3 4.3 0 0 1 .1 3.2 4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
-      </a>
-      <a class="social" href="https://linkedin.com/in/r-nithin-kumar-reddy" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3.5 9h3v12h-3zM9.5 9h2.9v1.6h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5V21h-3v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-3z"/></svg>
-      </a>
-      <a class="social" href="https://mail.google.com/mail/?view=cm&fs=1&to=nithinkr078@gmail.com" aria-label="Email">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5L4 8V6l8 5 8-5z"/></svg>
-      </a>
-      <a class="social" href="https://nithin078.github.io" aria-label="Website">
-        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm7.9 9h-3.2a15.5 15.5 0 0 0-1.3-5.3A8.03 8.03 0 0 1 19.9 11zM12 4c.9 1.2 1.9 3.4 2.3 6H9.7C10.1 7.4 11.1 5.2 12 4zM4.1 13h3.2c.2 1.9.7 3.7 1.3 5.3A8.03 8.03 0 0 1 4.1 13zm3.2-2H4.1a8.03 8.03 0 0 1 4.5-5.3A15.5 15.5 0 0 0 7.3 11zM12 20c-.9-1.2-1.9-3.4-2.3-6h4.6c-.4 2.6-1.4 4.8-2.3 6zm2.9-1.7c.6-1.6 1.1-3.4 1.3-5.3h3.2a8.03 8.03 0 0 1-4.5 5.3z"/></svg>
-      </a>
-    </div>
-  </header>
-
-  <!-- About -->
-  <section class="section" id="about">
-    <div class="section-inner">
-      <div class="section-label">About me</div>
-      <h2>Production-oriented AI systems.</h2>
-
-      <p class="about-lead">
-        CS undergrad building multi-agent orchestration, cloud data pipelines (Azure/Databricks),
-        and autonomous developer tooling (AST, LSP, RAG) — with a backend + systems focus.
-      </p>
-      <div class="about-text">
-        <p>
-          Strong on FastAPI, distributed ETL, real-time monitoring, and security-oriented open source
-          (<a href="https://github.com/prowler-cloud/prowler" target="_blank" rel="noopener">Prowler</a>/AWS).
-          Comfortable owning features end-to-end from design to demo. Based in Bengaluru · looking for
-          software engineering, platform, and AI-infra internships.
-        </p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-card">
-          <h3>Education</h3>
-          <div class="edu-school">PES University</div>
-          <div class="edu-degree">B.Tech, Computer Science and Engineering</div>
-          <div class="edu-meta">
-            <span>Aug 2023 – May 2027</span>
-            <span>Bengaluru, Karnataka</span>
-          </div>
-          <p class="coursework">
-            <strong>Coursework:</strong>
-            DSA, OOAD, DBMS, OS, Networks, Compiler Design, Cloud Computing,
-            Machine Learning, Big Data, Data Analysis
-          </p>
+Starting Windows ........</div>
+          <h1>Windows XP</h1>
+          <p>Nithin Kumar Reddy · Portfolio Desktop</p>
+          <button class="press" type="button" id="enterBtn">Log On →</button>
         </div>
 
-        <div class="about-card">
-          <h3>Technical skills</h3>
-          <div class="skill-groups">
-            <div class="skill-row">
-              <div class="skill-label">Languages</div>
-              <div class="skill-chips">
-                <span class="skill-chip">Python</span>
-                <span class="skill-chip">C/C++</span>
-                <span class="skill-chip">Java</span>
-                <span class="skill-chip">JS / TS</span>
-                <span class="skill-chip">SQL</span>
-                <span class="skill-chip">Bash</span>
-              </div>
+        <!-- Desktop icons -->
+        <div class="desktop" id="desktop" aria-label="Desktop"></div>
+
+        <!-- Open windows -->
+        <div class="window-layer" id="windows"></div>
+
+        <!-- XP tip balloon -->
+        <div class="balloon" id="balloon" role="status">
+          <div class="balloon-title">
+            <span>Did you know?</span>
+            <button type="button" class="balloon-x" id="balloonClose" aria-label="Close">✕</button>
+          </div>
+          Double-click folders on the desktop to open them. Drag window edges to resize — just like Notepad.
+        </div>
+
+        <!-- Start menu -->
+        <div class="start-menu" id="startMenu" role="menu">
+          <div class="start-user">
+            <div class="start-avatar" aria-hidden="true">🧑‍💻</div>
+            <div>
+              <div class="start-user-name">Nithin Kumar Reddy</div>
+              <div class="start-user-sub">PES University · Bengaluru</div>
             </div>
-            <div class="skill-row">
-              <div class="skill-label">Backend &amp; cloud</div>
-              <div class="skill-chips">
-                <span class="skill-chip">FastAPI</span>
-                <span class="skill-chip">Node.js</span>
-                <span class="skill-chip">Azure</span>
-                <span class="skill-chip">Databricks</span>
-                <span class="skill-chip">Spark</span>
-                <span class="skill-chip">AWS</span>
-                <span class="skill-chip">Docker</span>
-                <span class="skill-chip">K8s</span>
-              </div>
+          </div>
+          <div class="start-body">
+            <div class="start-left">
+              <button class="start-item start-item-lg" data-open="file:readme" type="button">
+                <span class="si">📝</span>
+                <span class="si-text"><span class="si-main">README.txt</span><span class="si-sub">Getting started</span></span>
+              </button>
+              <button class="start-item start-item-lg" data-open="file:aegis" type="button">
+                <span class="si">⚙️</span>
+                <span class="si-text"><span class="si-main">Aegis Engineer</span><span class="si-sub">Pinned project</span></span>
+              </button>
+              <div class="start-sep"></div>
+              <button class="start-item" data-open="folder:about" type="button"><span class="si">📁</span> About Me</button>
+              <button class="start-item" data-open="folder:projects" type="button"><span class="si">📁</span> Projects</button>
+              <button class="start-item" data-open="folder:oss" type="button"><span class="si">📁</span> Open Source</button>
+              <button class="start-item" data-open="folder:contact" type="button"><span class="si">📁</span> Contact</button>
+              <div class="start-sep"></div>
+              <button class="start-item" data-open="file:resume" type="button"><span class="si">📄</span> Resume.pdf</button>
             </div>
-            <div class="skill-row">
-              <div class="skill-label">AI / ML</div>
-              <div class="skill-chips">
-                <span class="skill-chip">Multi-agent</span>
-                <span class="skill-chip">RAG</span>
-                <span class="skill-chip">LangChain</span>
-                <span class="skill-chip">Transformers</span>
-                <span class="skill-chip">scikit-learn</span>
-                <span class="skill-chip">OpenCV</span>
-              </div>
+            <div class="start-right">
+              <button class="start-item" data-open="file:mycomputer" type="button"><span class="si">💻</span> My Computer</button>
+              <button class="start-item" data-open="folder:about" type="button"><span class="si">👤</span> My Documents</button>
+              <button class="start-item" data-open="folder:projects" type="button"><span class="si">📂</span> My Projects</button>
+              <button class="start-item" data-open="file:resume" type="button"><span class="si">📎</span> Recent Resume</button>
+              <div class="start-sep"></div>
+              <button class="start-item" data-open="file:links" type="button"><span class="si">🌐</span> Network Places</button>
+              <button class="start-item" data-open="file:help" type="button"><span class="si">❓</span> Help and Support</button>
             </div>
-            <div class="skill-row">
-              <div class="skill-label">Data &amp; tooling</div>
-              <div class="skill-chips">
-                <span class="skill-chip">PostgreSQL</span>
-                <span class="skill-chip">MongoDB</span>
-                <span class="skill-chip">Kafka</span>
-                <span class="skill-chip">React</span>
-                <span class="skill-chip">Playwright</span>
-                <span class="skill-chip">Git</span>
-              </div>
-            </div>
+          </div>
+          <div class="start-footer">
+            <button type="button" id="logoffBtn"><span>🚪</span> Log Off</button>
+            <button type="button" id="shutdownBtn"><span>⏻</span> Turn Off Computer</button>
+          </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div class="taskbar">
+          <button class="start-btn" id="startBtn" type="button" aria-haspopup="true" aria-expanded="false">
+            <span class="start-logo" aria-hidden="true"></span>
+            start
+          </button>
+          <div class="quick-launch" aria-label="Quick Launch">
+            <button type="button" class="ql-btn" id="showDesktop" title="Show Desktop">🖥️</button>
+            <button type="button" class="ql-btn" data-open="folder:projects" title="Projects">📁</button>
+            <button type="button" class="ql-btn" data-open="file:resume" title="Resume">📄</button>
+          </div>
+          <div class="task-btns" id="taskBtns"></div>
+          <div class="tray">
+            <span title="Volume">🔊</span>
+            <span title="Network">📶</span>
+            <span title="Security">🛡️</span>
+            <span id="clock">12:00</span>
           </div>
         </div>
       </div>
-
-      <div class="exp-block">
-        <div class="section-label">Experience</div>
-        <div class="exp-title">Summer Research Intern — IFSCR, PES University</div>
-        <div class="exp-meta">Jun – Aug 2025 · Digital image forensics · Center for Information Security, Forensics and Cyber Resilience</div>
-        <ul class="exp-list">
-          <li>
-            Built an end-to-end image provenance pipeline that identifies the original source of
-            manipulated/reposted images (feature matching + temporal graph analysis).
-          </li>
-          <li>
-            Modeled dissemination as a time-aware graph over users/posts and traced likely origin
-            paths under reuploads, crops, and reposts.
-          </li>
-          <li>
-            Implemented SIFT-based robust matching resilient to scale, crop, and rotation; combined
-            similarity + graph signals into a confidence-ranked source prediction.
-          </li>
-          <li>
-            Delivered a research prototype with reproducible evaluation; informed forensic methodology
-            for multi-hop image reuse scenarios.
-          </li>
-        </ul>
-      </div>
-
-      <div class="exp-block">
-        <div class="section-label">Achievements</div>
-        <div class="achieve-list">
-          <div class="achieve-item">
-            <div class="achieve-title"><em>Top 4</em> — FASTATHON, SRM University All-India Hackathon</div>
-          </div>
-          <div class="achieve-item">
-            <div class="achieve-title"><em>Top 4</em> — Space Race Hackathon, Equinox Club, PES University</div>
-          </div>
-          <div class="achieve-item">
-            <div class="achieve-title">Oracle Cloud Infrastructure — AI Foundations Associate</div>
-            <div class="achieve-meta">Badge</div>
-          </div>
-          <div class="achieve-item">
-            <div class="achieve-title">HackerRank — Problem Solving (Intermediate)</div>
-            <div class="achieve-meta">Certified</div>
-          </div>
-          <div class="achieve-item">
-            <div class="achieve-title">Adobe India Hackathon</div>
-            <div class="achieve-meta">Participant</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-cta">
-        <p>Full education, experience, projects, and open-source work — one page.</p>
-        <a class="btn" href="resume/Nithin_Kumar_Reddy.pdf" download="Nithin_Kumar_Reddy_Resume.pdf">
-          Download Resume
-        </a>
-      </div>
+      <div class="brand">NithinKR · Portable Workstation</div>
     </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="section" id="projects" style="background: var(--bg);">
-    <div class="section-inner">
-      <div class="section-label">My projects</div>
-      <h2>Selected work</h2>
-      <div class="projects">
-        <a class="project" href="https://github.com/Nithin078/Aegis-Engineer" target="_blank" rel="noopener">
-          <div class="project-index">01</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">Aegis Engineer</div>
-              <div class="project-year">2025 – 26</div>
-            </div>
-            <p class="project-desc">
-              Autonomous software-engineering platform that builds a repository intelligence graph
-              (AST, call graphs, LSP, semantic search), then plans, edits, verifies, and opens
-              production-ready PRs for GitHub issues — grounded tooling, not free-form chat demos.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Multi-agent</span>
-                <span class="tag">AST</span>
-                <span class="tag">LSP</span>
-                <span class="tag">Semantic search</span>
-                <span class="tag">GitHub API</span>
-                <span class="tag">RAG</span>
-              </div>
-              <span class="project-go">View repo →</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project" href="https://github.com/Nithin078/Agentic-AI-Driven-Dynamic-Orchestration-of-Big-Data-Pipelines" target="_blank" rel="noopener">
-          <div class="project-index">02</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">Agentic pipeline orchestration</div>
-              <div class="project-year">2025</div>
-            </div>
-            <p class="project-desc">
-              Multi-agent orchestrator that designs, deploys, and monitors Azure Data Factory + Databricks
-              ETL pipelines from a CSV and natural-language prompt. Seven agents cover planning, compute
-              sizing, monitoring, assurance, and healing — ML sizing cut over-provisioning ~30% in evals;
-              dual-validation checks plans before execution.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">Azure Data Factory</span>
-                <span class="tag">Databricks</span>
-                <span class="tag">React</span>
-                <span class="tag">scikit-learn</span>
-                <span class="tag">WebSockets</span>
-                <span class="tag">LLM</span>
-              </div>
-              <span class="project-go">View repo →</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project" href="https://github.com/Nithin078/DemoGen" target="_blank" rel="noopener">
-          <div class="project-index">03</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">DemoGen</div>
-              <div class="project-year">2026</div>
-            </div>
-            <p class="project-desc">
-              AI demo-video generator: describe a product walkthrough in plain text, and the system
-              plans browser steps, runs them with Playwright + screen capture, narrates with TTS,
-              and composes a final MP4 via FFmpeg — repeatable demos without manual re-recording each release.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">React</span>
-                <span class="tag">Playwright</span>
-                <span class="tag">FFmpeg</span>
-                <span class="tag">TTS</span>
-                <span class="tag">Browser automation</span>
-              </div>
-              <span class="project-go">View repo →</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Open source -->
-  <section class="section" id="opensource">
-    <div class="section-inner">
-      <div class="section-label">Open source</div>
-      <h2>Shipping into real codebases</h2>
-      <div class="projects">
-        <a class="project" href="https://github.com/prowler-cloud/prowler/pull/12076" target="_blank" rel="noopener">
-          <div class="project-index">01</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">Prowler — EC2 stopped instances</div>
-              <div class="project-year">2025 · Merged</div>
-            </div>
-            <p class="project-desc">
-              Added a configurable AWS check that fails when an EC2 instance has been stopped longer
-              than a threshold (default 30 days). Duration is taken from state-transition metadata,
-              not launch time, so long-stopped instances holding EBS, IAM profiles, and keys get flagged
-              for review. Includes model, config, docs, fixtures, and unit tests.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">AWS</span>
-                <span class="tag">EC2</span>
-                <span class="tag">Prowler</span>
-                <span class="tag">Cloud security</span>
-                <span class="tag">Compliance</span>
-              </div>
-              <span class="project-go">View PR →</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project" href="https://github.com/prowler-cloud/prowler/pull/12118" target="_blank" rel="noopener">
-          <div class="project-index">02</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">Prowler — SageMaker KMS encryption</div>
-              <div class="project-year">2026</div>
-            </div>
-            <p class="project-desc">
-              New SageMaker check that passes only when an endpoint configuration has a KMS key set
-              for at-rest encryption. Extended the service model to collect KmsKeyId, with unit tests
-              for missing vs present keys and a changelog fragment.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">AWS</span>
-                <span class="tag">SageMaker</span>
-                <span class="tag">KMS</span>
-                <span class="tag">Prowler</span>
-                <span class="tag">Unit tests</span>
-              </div>
-              <span class="project-go">View PR →</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project" href="https://github.com/memgraph/memgraph/pull/4490" target="_blank" rel="noopener">
-          <div class="project-index">03</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">Memgraph — query planner SIGSEGV fix</div>
-              <div class="project-year">2026</div>
-            </div>
-            <p class="project-desc">
-              Fixed a crash in Memgraph’s Cypher planner when EXISTS subqueries contain only a RETURN
-              (no MATCH). The planner null-dereferenced input_op on that path; the fix seeds a safe
-              Once operator so RETURN-only EXISTS and related pattern-comprehension filters plan cleanly.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">C++</span>
-                <span class="tag">Memgraph</span>
-                <span class="tag">Cypher</span>
-                <span class="tag">Query planner</span>
-                <span class="tag">Bugfix</span>
-              </div>
-              <span class="project-go">View PR →</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project" href="https://github.com/Tracer-Cloud/opensre/pull/4401" target="_blank" rel="noopener">
-          <div class="project-index">04</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">OpenSRE — conversation turn unit tests</div>
-              <div class="project-year">2026 · Merged</div>
-            </div>
-            <p class="project-desc">
-              Added focused unit tests for the agent harness helper that records conversation turns —
-              covering append, in-window behavior, summary compaction when the message window overflows,
-              and in-place list updates so external aliases stay in sync. Tests only; no production code changes.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">OpenSRE</span>
-                <span class="tag">Agent harness</span>
-                <span class="tag">Testing</span>
-                <span class="tag">AI SRE</span>
-              </div>
-              <span class="project-go">View PR →</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="project" href="https://github.com/rtk-ai/rtk/pull/3251" target="_blank" rel="noopener">
-          <div class="project-index">05</div>
-          <div class="project-main">
-            <div class="project-top">
-              <div class="project-title">RTK — guard CD pipeline on forks</div>
-              <div class="project-year">2026</div>
-            </div>
-            <p class="project-desc">
-              Locked pre-release and release-please entry jobs in the CD workflow to the canonical
-              rtk-ai org. Forks lack release tags, so those jobs always failed on push; downstream jobs
-              already no-op on empty outputs — this stops the red X on every fork pipeline run.
-            </p>
-            <div class="project-foot">
-              <div class="tags">
-                <span class="tag">GitHub Actions</span>
-                <span class="tag">CI/CD</span>
-                <span class="tag">Release</span>
-                <span class="tag">RTK</span>
-              </div>
-              <span class="project-go">View PR →</span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section" id="contact" style="background: var(--bg);">
-    <div class="section-inner" style="text-align: center;">
-      <div class="section-label">Contact me</div>
-      <h2>Let’s build something sharp.</h2>
-      <p class="bio" style="margin: 0 auto 1.5rem; max-width: 36ch;">
-        Internships, collabs, or systems ideas — happy to chat.
-      </p>
-      <a class="btn" href="https://mail.google.com/mail/?view=cm&fs=1&to=nithinkr078@gmail.com">nithinkr078@gmail.com</a>
-      <div class="socials" style="padding-top: 1.75rem;">
-        <a class="social" href="https://github.com/Nithin078" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 8.2 22.9c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.7 1.6 2.6 1.1.1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6a4.7 4.7 0 0 1 1.2-3.2 4.3 4.3 0 0 1 .1-3.2s1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2a4.3 4.3 0 0 1 .1 3.2 4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>
-        </a>
-        <a class="social" href="https://linkedin.com/in/r-nithin-kumar-reddy" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3.5 9h3v12h-3zM9.5 9h2.9v1.6h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5V21h-3v-5.3c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-3z"/></svg>
-        </a>
-        <a class="social" href="resume/Nithin_Kumar_Reddy.pdf" download="Nithin_Kumar_Reddy_Resume.pdf" aria-label="Resume">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 2 4 4h-4zM8 13h8v2H8zm0 4h8v2H8zm0-8h4v2H8z"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <span>© <span id="y"></span> Nithin Kumar Reddy · </span>
-    <a href="resume/Nithin_Kumar_Reddy.pdf" download>Resume PDF</a>
-  </footer>
+  </div>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    /* ========== FS: folders & files ========== */
+    const FS = {
+      mycomputer: {
+        type: "file",
+        name: "My Computer",
+        icon: "💻",
+        kind: "doc",
+        title: "My Computer",
+        html: `
+          <h3>My Computer</h3>
+          <p class="meta">System · NithinOS Professional</p>
+          <p><b>User:</b> Nithin Kumar Reddy</p>
+          <p><b>OS:</b> Windows XP Professional (portfolio build)</p>
+          <p><b>Location:</b> Bengaluru, Karnataka</p>
+          <p><b>Drives:</b></p>
+          <ul>
+            <li>📁 About Me (C:\\Users\\Nithin\\About)</li>
+            <li>📁 Projects (C:\\Users\\Nithin\\Projects)</li>
+            <li>📁 Open Source (C:\\Users\\Nithin\\OSS)</li>
+            <li>📁 Contact (C:\\Users\\Nithin\\Contact)</li>
+            <li>📄 Resume.pdf</li>
+          </ul>
+          <p>Open folders from the desktop or Start menu to browse content.</p>
+        `,
+      },
+      recycle: {
+        type: "file",
+        name: "Recycle Bin",
+        icon: "🗑️",
+        kind: "doc",
+        title: "Recycle Bin",
+        html: `
+          <h3>Recycle Bin</h3>
+          <p class="meta">0 objects</p>
+          <p>The Recycle Bin is empty.</p>
+          <p>Bad commits and mid portfolio drafts go here. Yours already got cleaned up.</p>
+        `,
+      },
+      help: {
+        type: "file",
+        name: "Help and Support",
+        icon: "❓",
+        kind: "doc",
+        title: "Help and Support",
+        html: `
+          <h3>Help and Support Center</h3>
+          <p class="meta">NithinOS · How to use this desktop</p>
+          <ul>
+            <li><b>Open folders</b> — double-click desktop icons (or use Start)</li>
+            <li><b>Open files</b> — double-click a file inside a folder</li>
+            <li><b>Move windows</b> — drag the blue title bar</li>
+            <li><b>Resize windows</b> — drag edges or the bottom-right corner</li>
+            <li><b>Maximize</b> — □ button or double-click the title bar</li>
+            <li><b>Show Desktop</b> — quick-launch monitor icon next to Start</li>
+          </ul>
+        `,
+      },
+      about: {
+        type: "folder",
+        name: "About Me",
+        icon: "📁",
+        files: ["summary", "education", "skills", "experience", "achievements"],
+      },
+      projects: {
+        type: "folder",
+        name: "Projects",
+        icon: "📁",
+        files: ["aegis", "pipeline", "demogen"],
+      },
+      oss: {
+        type: "folder",
+        name: "Open Source",
+        icon: "📁",
+        files: ["prowler_ec2", "prowler_sm", "memgraph", "opensre", "rtk"],
+      },
+      contact: {
+        type: "folder",
+        name: "Contact",
+        icon: "📁",
+        files: ["email", "phone", "github", "linkedin", "website", "location", "resume_shortcut", "links"],
+      },
+      resume: {
+        type: "file",
+        name: "Resume.pdf",
+        icon: "📄",
+        kind: "link",
+        href: "resume/Nithin_Kumar_Reddy.pdf",
+        download: "Nithin_Kumar_Reddy_Resume.pdf",
+      },
+      readme: {
+        type: "file",
+        name: "README.txt",
+        icon: "📝",
+        kind: "doc",
+        title: "README.txt — NithinOS",
+        html: `
+          <h3>Welcome to NithinOS</h3>
+          <p class="meta">Portfolio workstation · Windows XP edition</p>
+          <p>This desktop is my portfolio. Open folders on the desktop (or via Start) to browse sections. Double‑click a file to read it.</p>
+          <ul>
+            <li><b>About Me</b> — summary, education, skills, experience</li>
+            <li><b>Projects</b> — Aegis, agentic pipelines, DemoGen</li>
+            <li><b>Open Source</b> — Prowler, Memgraph, OpenSRE, RTK</li>
+            <li><b>Contact</b> — email & socials</li>
+            <li><b>Resume.pdf</b> — download the latest PDF</li>
+          </ul>
+          <p>Tip: drag title bars to move windows. Drag edges/corners to resize. Double‑click the title bar to maximize. Use ✕ to close.</p>
+        `,
+      },
+      summary: {
+        type: "file", name: "summary.txt", icon: "📝", kind: "doc",
+        title: "summary.txt",
+        html: `
+          <h3>summary.txt</h3>
+          <p class="meta">About Me · Nithin Kumar Reddy · Bengaluru</p>
+          <p>CS undergrad building <b>production-oriented AI systems</b>: multi-agent orchestration, cloud data pipelines (Azure/Databricks), and autonomous developer tooling (AST, LSP, RAG).</p>
+          <p>Strong backend + systems focus — FastAPI, distributed ETL, real-time monitoring, and security-oriented open source (Prowler/AWS). Comfortable owning features end-to-end from design to demo.</p>
+          <p>Looking for software engineering / platform / AI-infra internships where I can ship measurable reliability, automation, and developer-experience improvements.</p>
+        `,
+      },
+      education: {
+        type: "file", name: "education.txt", icon: "📝", kind: "doc",
+        title: "education.txt",
+        html: `
+          <h3>education.txt</h3>
+          <p class="meta">PES University · Bengaluru, Karnataka</p>
+          <p><b>B.Tech, Computer Science and Engineering</b><br/>Aug 2023 – May 2027</p>
+          <p><b>Coursework:</b> Data Structures & Algorithms, OOAD, DBMS, Operating Systems, Computer Networks, Compiler Design, Cloud Computing, Machine Learning, Big Data, Data Analysis</p>
+        `,
+      },
+      skills: {
+        type: "file", name: "skills.txt", icon: "📝", kind: "doc",
+        title: "skills.txt",
+        html: `
+          <h3>skills.txt</h3>
+          <p><b>Languages:</b> Python, C/C++, Java, JavaScript/TypeScript, SQL, Bash</p>
+          <p><b>Backend & APIs:</b> FastAPI, Node.js, Express, REST, WebSockets, JWT/OAuth</p>
+          <p><b>Cloud & Data:</b> Azure (ADF, Functions, ADLS), Databricks, Spark, Kafka, AWS, Docker, Kubernetes, Linux, Git</p>
+          <p><b>AI/ML:</b> Multi-agent systems, RAG, LangChain, Transformers, scikit-learn, TensorFlow, OpenCV</p>
+          <p><b>Frontend & Tooling:</b> React, Playwright, FFmpeg, HTML/CSS</p>
+          <p><b>Databases:</b> PostgreSQL, MySQL, MongoDB, SQLite, Firebase, Supabase</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Azure</span>
+            <span class="chip">Agents</span><span class="chip">AWS</span><span class="chip">React</span>
+          </div>
+        `,
+      },
+      experience: {
+        type: "file", name: "experience.txt", icon: "📝", kind: "doc",
+        title: "experience.txt",
+        html: `
+          <h3>experience.txt</h3>
+          <p class="meta">IFSCR, PES University · Jun – Aug 2025 · Research Intern</p>
+          <p><b>Center for Information Security, Forensics and Cyber Resilience</b> — Digital image forensics</p>
+          <ul>
+            <li>End-to-end image provenance pipeline for original-source detection of manipulated/reposted images (feature matching + temporal graph analysis).</li>
+            <li>Modeled dissemination as a time-aware graph over users/posts; traced origin under reuploads, crops, and reposts.</li>
+            <li>SIFT-based robust matching (scale/crop/rotation); combined similarity + graph signals into confidence-ranked source prediction.</li>
+            <li>Research prototype with reproducible evaluation for multi-hop image reuse scenarios.</li>
+          </ul>
+        `,
+      },
+      achievements: {
+        type: "file", name: "achievements.txt", icon: "📝", kind: "doc",
+        title: "achievements.txt",
+        html: `
+          <h3>achievements.txt</h3>
+          <ul>
+            <li><b>Top 4</b> — FASTATHON, SRM University All-India Hackathon</li>
+            <li><b>Top 4</b> — Space Race Hackathon, Equinox Club, PES University</li>
+            <li>Participant — Adobe India Hackathon</li>
+            <li>Oracle Cloud Infrastructure — AI Foundations Associate</li>
+            <li>HackerRank — Problem Solving (Intermediate)</li>
+          </ul>
+        `,
+      },
+      aegis: {
+        type: "file", name: "Aegis_Engineer.txt", icon: "📝", kind: "doc",
+        title: "Aegis_Engineer.txt",
+        html: `
+          <h3>Aegis Engineer</h3>
+          <p class="meta">2025 – 26 · <a href="https://github.com/Nithin078/Aegis-Engineer" target="_blank" rel="noopener">github.com/Nithin078/Aegis-Engineer</a></p>
+          <p>Autonomous software-engineering platform that builds a repository intelligence graph (AST, call graphs, LSP, semantic search), then plans, edits, verifies, and opens production-ready PRs for GitHub issues — grounded tooling, not free-form chat demos.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Multi-agent</span><span class="chip">AST</span>
+            <span class="chip">LSP</span><span class="chip">Semantic search</span><span class="chip">GitHub API</span><span class="chip">RAG</span>
+          </div>
+        `,
+      },
+      pipeline: {
+        type: "file", name: "Agentic_Pipeline.txt", icon: "📝", kind: "doc",
+        title: "Agentic_Pipeline.txt",
+        html: `
+          <h3>Agentic pipeline orchestration</h3>
+          <p class="meta">2025 · <a href="https://github.com/Nithin078/Agentic-AI-Driven-Dynamic-Orchestration-of-Big-Data-Pipelines" target="_blank" rel="noopener">GitHub repo</a></p>
+          <p>Multi-agent orchestrator that designs, deploys, and monitors Azure Data Factory + Databricks ETL pipelines from a CSV and natural-language prompt. Seven agents cover planning, compute sizing, monitoring, assurance, and healing — ML sizing cut over-provisioning ~30% in evals; dual-validation checks plans before execution.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Azure Data Factory</span>
+            <span class="chip">Databricks</span><span class="chip">React</span><span class="chip">scikit-learn</span>
+            <span class="chip">WebSockets</span><span class="chip">LLM</span>
+          </div>
+        `,
+      },
+      demogen: {
+        type: "file", name: "DemoGen.txt", icon: "📝", kind: "doc",
+        title: "DemoGen.txt",
+        html: `
+          <h3>DemoGen</h3>
+          <p class="meta">2026 · <a href="https://github.com/Nithin078/DemoGen" target="_blank" rel="noopener">github.com/Nithin078/DemoGen</a></p>
+          <p>AI demo-video generator: describe a product walkthrough in plain text, and the system plans browser steps, runs them with Playwright + screen capture, narrates with TTS, and composes a final MP4 via FFmpeg — repeatable demos without manual re-recording each release.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span>
+            <span class="chip">Playwright</span><span class="chip">FFmpeg</span><span class="chip">TTS</span>
+          </div>
+        `,
+      },
+      prowler_ec2: {
+        type: "file", name: "Prowler_EC2.txt", icon: "📝", kind: "doc",
+        title: "Prowler_EC2.txt",
+        html: `
+          <h3>Prowler — EC2 stopped instances</h3>
+          <p class="meta">2025 · Merged · <a href="https://github.com/prowler-cloud/prowler/pull/12076" target="_blank" rel="noopener">PR #12076</a></p>
+          <p>Added a configurable AWS check that fails when an EC2 instance has been stopped longer than a threshold (default 30 days). Duration is taken from state-transition metadata, not launch time, so long-stopped instances holding EBS, IAM profiles, and keys get flagged for review. Includes model, config, docs, fixtures, and unit tests.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">AWS</span><span class="chip">EC2</span>
+            <span class="chip">Prowler</span><span class="chip">Cloud security</span>
+          </div>
+        `,
+      },
+      prowler_sm: {
+        type: "file", name: "Prowler_SageMaker.txt", icon: "📝", kind: "doc",
+        title: "Prowler_SageMaker.txt",
+        html: `
+          <h3>Prowler — SageMaker KMS encryption</h3>
+          <p class="meta">2026 · <a href="https://github.com/prowler-cloud/prowler/pull/12118" target="_blank" rel="noopener">PR #12118</a></p>
+          <p>New SageMaker check that passes only when an endpoint configuration has a KMS key set for at-rest encryption. Extended the service model to collect KmsKeyId, with unit tests for missing vs present keys and a changelog fragment.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">AWS</span><span class="chip">SageMaker</span>
+            <span class="chip">KMS</span><span class="chip">Prowler</span>
+          </div>
+        `,
+      },
+      memgraph: {
+        type: "file", name: "Memgraph.txt", icon: "📝", kind: "doc",
+        title: "Memgraph.txt",
+        html: `
+          <h3>Memgraph — query planner SIGSEGV fix</h3>
+          <p class="meta">2026 · <a href="https://github.com/memgraph/memgraph/pull/4490" target="_blank" rel="noopener">PR #4490</a></p>
+          <p>Fixed a crash in Memgraph’s Cypher planner when EXISTS subqueries contain only a RETURN (no MATCH). The planner null-dereferenced input_op on that path; the fix seeds a safe Once operator so RETURN-only EXISTS and related pattern-comprehension filters plan cleanly.</p>
+          <div class="chips">
+            <span class="chip">C++</span><span class="chip">Memgraph</span><span class="chip">Cypher</span>
+            <span class="chip">Query planner</span><span class="chip">Bugfix</span>
+          </div>
+        `,
+      },
+      opensre: {
+        type: "file", name: "OpenSRE.txt", icon: "📝", kind: "doc",
+        title: "OpenSRE.txt",
+        html: `
+          <h3>OpenSRE — conversation turn unit tests</h3>
+          <p class="meta">2026 · Merged · <a href="https://github.com/Tracer-Cloud/opensre/pull/4401" target="_blank" rel="noopener">PR #4401</a></p>
+          <p>Added focused unit tests for the agent harness helper that records conversation turns — covering append, in-window behavior, summary compaction when the message window overflows, and in-place list updates so external aliases stay in sync. Tests only; no production code changes.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">OpenSRE</span><span class="chip">Agent harness</span>
+            <span class="chip">Testing</span><span class="chip">AI SRE</span>
+          </div>
+        `,
+      },
+      rtk: {
+        type: "file", name: "RTK_CI.txt", icon: "📝", kind: "doc",
+        title: "RTK_CI.txt",
+        html: `
+          <h3>RTK — guard CD pipeline on forks</h3>
+          <p class="meta">2026 · <a href="https://github.com/rtk-ai/rtk/pull/3251" target="_blank" rel="noopener">PR #3251</a></p>
+          <p>Locked pre-release and release-please entry jobs in the CD workflow to the canonical rtk-ai org. Forks lack release tags, so those jobs always failed on push; downstream jobs already no-op on empty outputs — this stops the red X on every fork pipeline run.</p>
+          <div class="chips">
+            <span class="chip">GitHub Actions</span><span class="chip">CI/CD</span>
+            <span class="chip">Release</span><span class="chip">RTK</span>
+          </div>
+        `,
+      },
+      email: {
+        type: "file", name: "email.txt", icon: "✉️", kind: "url",
+        href: "https://mail.google.com/mail/?view=cm&fs=1&to=nithinkr078@gmail.com",
+      },
+      phone: {
+        type: "file", name: "phone.txt", icon: "📞", kind: "doc",
+        title: "phone.txt",
+        html: `
+          <h3>phone.txt</h3>
+          <p class="meta">Mobile · India</p>
+          <p><b>Phone:</b> +91 7259668646</p>
+          <p><b>WhatsApp:</b> same number</p>
+          <p>Based in Bengaluru · available for internship / collab calls.</p>
+          <p style="margin-top:12px"><a href="tel:+917259668646">Call +91 7259668646 →</a></p>
+        `,
+      },
+      github: {
+        type: "file", name: "GitHub.url", icon: "🐙", kind: "url",
+        href: "https://github.com/Nithin078",
+      },
+      linkedin: {
+        type: "file", name: "LinkedIn.url", icon: "💼", kind: "url",
+        href: "https://linkedin.com/in/r-nithin-kumar-reddy",
+      },
+      website: {
+        type: "file", name: "Website.url", icon: "🌐", kind: "url",
+        href: "https://nithin078.github.io",
+      },
+      location: {
+        type: "file", name: "location.txt", icon: "📍", kind: "url",
+        href: "https://www.google.com/maps/search/?api=1&query=Bengaluru+Karnataka+India",
+      },
+      resume_shortcut: {
+        type: "file", name: "Resume.pdf", icon: "📄", kind: "url",
+        href: "resume/Nithin_Kumar_Reddy.pdf",
+        download: "Nithin_Kumar_Reddy_Resume.pdf",
+      },
+      links: {
+        type: "file", name: "all_links.txt", icon: "🔗", kind: "doc",
+        title: "all_links.txt",
+        html: `
+          <h3>all_links.txt</h3>
+          <p class="meta">Everything in one place</p>
+          <ul>
+            <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=nithinkr078@gmail.com">Email — nithinkr078@gmail.com</a></li>
+            <li><a href="tel:+917259668646">Phone — +91 7259668646</a></li>
+            <li><a href="https://github.com/Nithin078" target="_blank" rel="noopener">GitHub — Nithin078</a></li>
+            <li><a href="https://linkedin.com/in/r-nithin-kumar-reddy" target="_blank" rel="noopener">LinkedIn — r-nithin-kumar-reddy</a></li>
+            <li><a href="https://nithin078.github.io" target="_blank" rel="noopener">Website — nithin078.github.io</a></li>
+            <li><a href="resume/Nithin_Kumar_Reddy.pdf" download="Nithin_Kumar_Reddy_Resume.pdf">Resume.pdf (download)</a></li>
+          </ul>
+        `,
+      },
+    };
+
+    const DESKTOP_ORDER = ["mycomputer", "about", "projects", "oss", "contact", "resume", "readme", "recycle"];
+
+    /* ========== Window manager ========== */
+    let zTop = 20;
+    const openWins = new Map();
+    let activeId = null;
+    let drag = null;
+    let resize = null;
+    const MIN_W = 220;
+    const MIN_H = 140;
+
+    function screenBounds() {
+      return document.getElementById("screen").getBoundingClientRect();
+    }
+
+    function clampWin(win, left, top, width, height) {
+      const scr = screenBounds();
+      const taskH = 42; // match --taskbar-h
+      const maxH = scr.height - taskH;
+      width = Math.max(MIN_W, Math.min(width, scr.width - 4));
+      height = Math.max(MIN_H, Math.min(height, maxH - 4));
+      left = Math.max(0, Math.min(left, scr.width - 48));
+      top = Math.max(0, Math.min(top, maxH - 28));
+      win.style.left = left + "px";
+      win.style.top = top + "px";
+      win.style.width = width + "px";
+      win.style.height = height + "px";
+    }
+
+    const desktopEl = document.getElementById("desktop");
+    const windowsEl = document.getElementById("windows");
+    const taskBtns = document.getElementById("taskBtns");
+    const startBtn = document.getElementById("startBtn");
+    const startMenu = document.getElementById("startMenu");
+    const welcome = document.getElementById("welcome");
+    const enterBtn = document.getElementById("enterBtn");
+    const clockEl = document.getElementById("clock");
+
+    function updateClock() {
+      const d = new Date();
+      let h = d.getHours();
+      const m = String(d.getMinutes()).padStart(2, "0");
+      const ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      clockEl.textContent = h + ":" + m + " " + ampm;
+    }
+    updateClock();
+    setInterval(updateClock, 15000);
+
+    function renderDesktop() {
+      desktopEl.innerHTML = "";
+      DESKTOP_ORDER.forEach((id) => {
+        const node = FS[id];
+        if (!node) return;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "desk-icon";
+        btn.dataset.id = id;
+        btn.innerHTML = `<span class="icon-art" aria-hidden="true">${node.icon}</span><span class="label">${node.name}</span>`;
+        btn.addEventListener("click", () => {
+          desktopEl.querySelectorAll(".desk-icon").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+        });
+        btn.addEventListener("dblclick", () => openItem(id));
+        btn.addEventListener("touchend", (e) => {
+          e.preventDefault();
+          if (btn.classList.contains("selected")) openItem(id);
+          else {
+            desktopEl.querySelectorAll(".desk-icon").forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+          }
+        });
+        desktopEl.appendChild(btn);
+      });
+    }
+
+    function bringFront(id) {
+      const w = openWins.get(id);
+      if (!w) return;
+      zTop += 1;
+      w.el.style.zIndex = zTop;
+      openWins.forEach((ow, oid) => {
+        ow.el.classList.toggle("active", oid === id);
+        if (ow.taskBtn) ow.taskBtn.classList.toggle("active", oid === id);
+      });
+      activeId = id;
+    }
+
+    function closeWin(id) {
+      const w = openWins.get(id);
+      if (!w) return;
+      w.el.remove();
+      if (w.taskBtn) w.taskBtn.remove();
+      openWins.delete(id);
+      if (activeId === id) {
+        activeId = null;
+        const last = [...openWins.keys()].pop();
+        if (last) bringFront(last);
+      }
+    }
+
+    function cascadePos() {
+      const n = openWins.size;
+      const baseX = 36 + (n % 6) * 22;
+      const baseY = 28 + (n % 6) * 22;
+      return { x: baseX, y: baseY };
+    }
+
+    function openItem(id) {
+      const node = FS[id];
+      if (!node) return;
+      closeStart();
+
+      // Direct external / mailto / tel / file links → always new tab
+      if ((node.kind === "url" || node.kind === "link") && node.href) {
+        const a = document.createElement("a");
+        a.href = node.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        // Prefer opening PDF in a new tab (view), not a forced download
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        return;
+      }
+
+      if (node.type === "folder") {
+        openFolderWindow(id, node);
+        return;
+      }
+
+      if (node.kind === "doc") {
+        openDocWindow(id, node);
+      }
+    }
+
+    function ensureWin(id, title, icon, width, height, bodyHtml, statusText) {
+      if (openWins.has(id)) {
+        const existing = openWins.get(id);
+        existing.el.style.display = "flex";
+        bringFront(id);
+        return existing;
+      }
+
+      const pos = cascadePos();
+      const win = document.createElement("div");
+      win.className = "win active";
+      win.dataset.id = id;
+      win.style.left = pos.x + "px";
+      win.style.top = pos.y + "px";
+      win.style.width = width + "px";
+      win.style.height = height + "px";
+      win.style.zIndex = ++zTop;
+
+      win.innerHTML = `
+        <div class="titlebar" data-drag>
+          <span class="t-icon">${icon}</span>
+          <span class="t-text">${title}</span>
+          <div class="t-btns">
+            <button class="t-btn" type="button" data-min title="Minimize">_</button>
+            <button class="t-btn max" type="button" data-max title="Maximize">□</button>
+            <button class="t-btn close" type="button" data-close title="Close">✕</button>
+          </div>
+        </div>
+        <div class="win-menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+        <div class="win-body">${bodyHtml}</div>
+        <div class="win-status"><span>${statusText || "Ready"}</span><span data-size></span></div>
+        <div class="rz rz-n" data-rz="n"></div>
+        <div class="rz rz-s" data-rz="s"></div>
+        <div class="rz rz-e" data-rz="e"></div>
+        <div class="rz rz-w" data-rz="w"></div>
+        <div class="rz rz-ne" data-rz="ne"></div>
+        <div class="rz rz-nw" data-rz="nw"></div>
+        <div class="rz rz-se" data-rz="se"></div>
+        <div class="rz rz-sw" data-rz="sw"></div>
+      `;
+
+      windowsEl.appendChild(win);
+
+      const task = document.createElement("button");
+      task.type = "button";
+      task.className = "task-btn active";
+      task.textContent = title;
+      task.title = title;
+      taskBtns.appendChild(task);
+
+      const entry = {
+        el: win,
+        taskBtn: task,
+        kind: FS[id]?.type || "file",
+        restored: null,
+      };
+      openWins.set(id, entry);
+
+      const sizeLabel = win.querySelector("[data-size]");
+      const updateSizeLabel = () => {
+        if (sizeLabel) {
+          sizeLabel.textContent =
+            Math.round(win.offsetWidth) + " × " + Math.round(win.offsetHeight);
+        }
+      };
+      updateSizeLabel();
+
+      win.addEventListener("mousedown", () => bringFront(id));
+      task.addEventListener("click", () => {
+        if (win.style.display === "none") {
+          win.style.display = "flex";
+          bringFront(id);
+        } else if (activeId === id) {
+          win.style.display = "none";
+          task.classList.remove("active");
+        } else {
+          bringFront(id);
+        }
+      });
+
+      win.querySelector("[data-close]").addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeWin(id);
+      });
+      win.querySelector("[data-min]").addEventListener("click", (e) => {
+        e.stopPropagation();
+        win.style.display = "none";
+        task.classList.remove("active");
+      });
+
+      const maxBtn = win.querySelector("[data-max]");
+      maxBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        bringFront(id);
+        if (win.classList.contains("maximized")) {
+          win.classList.remove("maximized");
+          maxBtn.textContent = "□";
+          if (entry.restored) {
+            clampWin(
+              win,
+              entry.restored.left,
+              entry.restored.top,
+              entry.restored.width,
+              entry.restored.height
+            );
+          }
+        } else {
+          entry.restored = {
+            left: parseFloat(win.style.left) || 0,
+            top: parseFloat(win.style.top) || 0,
+            width: win.offsetWidth,
+            height: win.offsetHeight,
+          };
+          win.classList.add("maximized");
+          maxBtn.textContent = "❐";
+          const scr = screenBounds();
+          win.style.left = "0px";
+          win.style.top = "0px";
+          win.style.width = scr.width + "px";
+          win.style.height = scr.height - 42 + "px";
+        }
+        updateSizeLabel();
+      });
+
+      // Double-click titlebar to maximize / restore
+      const bar = win.querySelector("[data-drag]");
+      bar.addEventListener("dblclick", (e) => {
+        if (e.target.closest(".t-btn")) return;
+        maxBtn.click();
+      });
+
+      bar.addEventListener("pointerdown", (e) => {
+        if (e.target.closest(".t-btn")) return;
+        if (win.classList.contains("maximized")) return;
+        bringFront(id);
+        const rect = win.getBoundingClientRect();
+        const screen = screenBounds();
+        drag = {
+          id,
+          ox: e.clientX - rect.left,
+          oy: e.clientY - rect.top,
+          screen,
+        };
+        bar.setPointerCapture(e.pointerId);
+      });
+      bar.addEventListener("pointermove", (e) => {
+        if (!drag || drag.id !== id) return;
+        const x = e.clientX - drag.screen.left - drag.ox;
+        const y = e.clientY - drag.screen.top - drag.oy;
+        const maxX = drag.screen.width - 48;
+        const maxY = drag.screen.height - 42 - 28;
+        win.style.left = Math.max(0, Math.min(x, maxX)) + "px";
+        win.style.top = Math.max(0, Math.min(y, maxY)) + "px";
+      });
+      bar.addEventListener("pointerup", () => { drag = null; });
+
+      // Resize edges / corners
+      win.querySelectorAll("[data-rz]").forEach((handle) => {
+        handle.addEventListener("pointerdown", (e) => {
+          e.stopPropagation();
+          if (win.classList.contains("maximized")) return;
+          bringFront(id);
+          const dir = handle.getAttribute("data-rz");
+          const scr = screenBounds();
+          const left = parseFloat(win.style.left) || 0;
+          const top = parseFloat(win.style.top) || 0;
+          resize = {
+            id,
+            dir,
+            startX: e.clientX,
+            startY: e.clientY,
+            left,
+            top,
+            width: win.offsetWidth,
+            height: win.offsetHeight,
+            scr,
+          };
+          handle.setPointerCapture(e.pointerId);
+        });
+        handle.addEventListener("pointermove", (e) => {
+          if (!resize || resize.id !== id) return;
+          const dx = e.clientX - resize.startX;
+          const dy = e.clientY - resize.startY;
+          let { left, top, width, height, dir, scr } = resize;
+          if (dir.includes("e")) width = resize.width + dx;
+          if (dir.includes("s")) height = resize.height + dy;
+          if (dir.includes("w")) {
+            width = resize.width - dx;
+            left = resize.left + dx;
+          }
+          if (dir.includes("n")) {
+            height = resize.height - dy;
+            top = resize.top + dy;
+          }
+          // keep within screen roughly
+          if (left < 0) {
+            width += left;
+            left = 0;
+          }
+          if (top < 0) {
+            height += top;
+            top = 0;
+          }
+          if (left + width > scr.width) width = scr.width - left;
+          if (top + height > scr.height - 42) height = scr.height - 42 - top;
+          if (width < MIN_W) {
+            if (dir.includes("w")) left = resize.left + resize.width - MIN_W;
+            width = MIN_W;
+          }
+          if (height < MIN_H) {
+            if (dir.includes("n")) top = resize.top + resize.height - MIN_H;
+            height = MIN_H;
+          }
+          win.style.left = left + "px";
+          win.style.top = top + "px";
+          win.style.width = width + "px";
+          win.style.height = height + "px";
+          updateSizeLabel();
+        });
+        handle.addEventListener("pointerup", () => {
+          resize = null;
+          updateSizeLabel();
+        });
+      });
+
+      bringFront(id);
+      return entry;
+    }
+
+    function explorerBodyHtml(folderId) {
+      const node = FS[folderId];
+      const filesHtml = node.files.map((fid) => {
+        const f = FS[fid];
+        return `<button type="button" class="file-icon" data-file="${fid}">
+          <span class="f-art">${f.icon}</span>
+          <span class="f-label">${f.name}</span>
+        </button>`;
+      }).join("");
+
+      const places = [
+        ["about", "About Me"],
+        ["projects", "Projects"],
+        ["oss", "Open Source"],
+        ["contact", "Contact"],
+      ].map(([fid, label]) =>
+        `<button type="button" class="place-btn${fid === folderId ? " current" : ""}" data-place="${fid}">📁 ${label}</button>`
+      ).join("");
+
+      return {
+        title: node.name,
+        status: `${node.files.length} object(s)`,
+        html: `
+        <div class="explorer-bar">
+          <button type="button" class="ex-btn" data-up title="Up one level">⬆</button>
+          <button type="button" class="ex-btn" data-home title="Show Desktop">🏠</button>
+          <div class="ex-addr"><span>Address</span> <b>C:\\Users\\Nithin\\${node.name}</b></div>
+        </div>
+        <div class="explorer-side">
+          <div class="explorer-nav">
+            <h4>Other Places</h4>
+            ${places}
+            <button type="button" class="place-btn" data-place="mycomputer">💻 My Computer</button>
+            <button type="button" class="place-btn" data-place="resume">📄 Resume</button>
+          </div>
+          <div class="explorer-main">
+            <div class="file-grid">${filesHtml}</div>
+          </div>
+        </div>`,
+      };
+    }
+
+    function bindExplorerChrome(entry) {
+      const win = entry.el;
+      const body = win.querySelector(".win-body");
+      if (!body) return;
+
+      body.querySelectorAll(".file-icon").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          body.querySelectorAll(".file-icon").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+        });
+        btn.addEventListener("dblclick", () => openItem(btn.dataset.file));
+        btn.addEventListener("touchend", (e) => {
+          e.preventDefault();
+          if (btn.classList.contains("selected")) openItem(btn.dataset.file);
+          else {
+            body.querySelectorAll(".file-icon").forEach((b) => b.classList.remove("selected"));
+            btn.classList.add("selected");
+          }
+        });
+      });
+
+      body.querySelectorAll("[data-place]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const place = btn.getAttribute("data-place");
+          const placeNode = FS[place];
+          if (placeNode && placeNode.type === "folder") {
+            // Navigate inside this same Explorer window
+            navigateExplorer(entry, place);
+          } else {
+            // Non-folders (My Computer, Resume) open their own window
+            openItem(place);
+          }
+        });
+      });
+
+      const up = body.querySelector("[data-up]");
+      if (up) {
+        up.addEventListener("click", () => openItem("mycomputer"));
+      }
+      const home = body.querySelector("[data-home]");
+      if (home) {
+        home.addEventListener("click", () => {
+          openWins.forEach((w) => {
+            w.el.style.display = "none";
+            if (w.taskBtn) w.taskBtn.classList.remove("active");
+          });
+        });
+      }
+    }
+
+    function navigateExplorer(entry, folderId) {
+      const node = FS[folderId];
+      if (!node || node.type !== "folder") return;
+      const view = explorerBodyHtml(folderId);
+      entry.folderId = folderId;
+      const body = entry.el.querySelector(".win-body");
+      const title = entry.el.querySelector(".t-text");
+      const status = entry.el.querySelector(".win-status span");
+      if (body) body.innerHTML = view.html;
+      if (title) title.textContent = view.title;
+      if (status) status.textContent = view.status;
+      if (entry.taskBtn) {
+        entry.taskBtn.textContent = view.title;
+        entry.taskBtn.title = view.title;
+      }
+      bindExplorerChrome(entry);
+      bringFront("explorer");
+    }
+
+    function openFolderWindow(id, node) {
+      // One Explorer window — left-rail folders navigate in place
+      const winId = "explorer";
+      if (openWins.has(winId)) {
+        const entry = openWins.get(winId);
+        entry.el.style.display = "flex";
+        bringFront(winId);
+        navigateExplorer(entry, id);
+        return;
+      }
+
+      const view = explorerBodyHtml(id);
+      const entry = ensureWin(
+        winId,
+        view.title,
+        "📁",
+        560,
+        360,
+        view.html,
+        view.status
+      );
+      entry.folderId = id;
+      bindExplorerChrome(entry);
+    }
+
+    function openDocWindow(id, node) {
+      const body = `
+        <div class="doc">
+          <div class="doc-toolbar">Notepad · ${node.name}</div>
+          <div class="doc-body">${node.html}</div>
+        </div>`;
+      ensureWin("doc:" + id, node.title || node.name, "📝", 480, 340, body, node.name);
+    }
+
+    function openLinkWindow(id, node) {
+      const body = `
+        <div class="doc">
+          <div class="doc-toolbar">Explorer · ${node.name}</div>
+          <div class="doc-body">
+            <h3>${node.name}</h3>
+            <p class="meta">Document on this workstation</p>
+            <p>Latest resume PDF. Click below to download.</p>
+            <p style="margin-top:14px">
+              <a href="${node.href}" download="${node.download || ""}">⬇ Download ${node.name}</a>
+            </p>
+            <p style="margin-top:10px">
+              <a href="${node.href}" target="_blank" rel="noopener">Open in new window</a>
+            </p>
+          </div>
+        </div>`;
+      ensureWin("link:" + id, node.name, "📄", 360, 240, body, "Ready");
+    }
+
+    function closeStart() {
+      startMenu.classList.remove("open");
+      startBtn.classList.remove("open");
+      startBtn.setAttribute("aria-expanded", "false");
+    }
+    function toggleStart() {
+      const open = !startMenu.classList.contains("open");
+      startMenu.classList.toggle("open", open);
+      startBtn.classList.toggle("open", open);
+      startBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    startBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleStart();
+    });
+    document.addEventListener("click", (e) => {
+      if (!startMenu.contains(e.target) && e.target !== startBtn && !startBtn.contains(e.target)) {
+        closeStart();
+      }
+    });
+
+    function handleOpenAttr(btn) {
+      const key = btn.getAttribute("data-open");
+      if (!key) return;
+      const id = key.includes(":") ? key.split(":")[1] : key;
+      openItem(id);
+    }
+
+    startMenu.querySelectorAll("[data-open]").forEach((btn) => {
+      btn.addEventListener("click", () => handleOpenAttr(btn));
+    });
+    document.querySelectorAll(".quick-launch [data-open]").forEach((btn) => {
+      btn.addEventListener("click", () => handleOpenAttr(btn));
+    });
+
+    document.getElementById("showDesktop").addEventListener("click", () => {
+      closeStart();
+      openWins.forEach((w) => {
+        w.el.style.display = "none";
+        if (w.taskBtn) w.taskBtn.classList.remove("active");
+      });
+    });
+
+    const balloon = document.getElementById("balloon");
+    document.getElementById("balloonClose").addEventListener("click", () => {
+      balloon.classList.remove("show");
+    });
+
+    function powerOff(msg) {
+      closeStart();
+      balloon.classList.remove("show");
+      openWins.forEach((_, id) => closeWin(id));
+      welcome.classList.remove("hidden");
+      document.getElementById("bootLog").textContent = msg;
+    }
+
+    document.getElementById("shutdownBtn").addEventListener("click", () => {
+      powerOff("It is now safe to turn off your computer.\n\n(Click to boot again.)");
+    });
+    document.getElementById("logoffBtn").addEventListener("click", () => {
+      powerOff("Logging off Nithin...\n\n(Click to log on again.)");
+    });
+
+    function enterDesktop() {
+      welcome.classList.add("hidden");
+      setTimeout(() => {
+        openItem("readme");
+        balloon.classList.add("show");
+        setTimeout(() => balloon.classList.remove("show"), 8000);
+      }, 200);
+    }
+
+    enterBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      enterDesktop();
+    });
+    welcome.addEventListener("click", (e) => {
+      if (e.target === enterBtn) return;
+      enterDesktop();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const sel = desktopEl.querySelector(".desk-icon.selected");
+        if (sel) openItem(sel.dataset.id);
+      }
+      if (e.key === "Escape") closeStart();
+    });
+
+    renderDesktop();
   </script>
 </body>
 </html>

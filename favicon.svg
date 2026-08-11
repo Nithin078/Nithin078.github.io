@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Nithin Kumar Reddy">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5ba3e0"/>
+      <stop offset="48%" stop-color="#a8d0ef"/>
+      <stop offset="52%" stop-color="#7cb342"/>
+      <stop offset="100%" stop-color="#3d7a1f"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3c81f3"/>
+      <stop offset="100%" stop-color="#0c4cb8"/>
+    </linearGradient>
+  </defs>
+  <!-- XP window -->
+  <rect x="2" y="3" width="28" height="26" rx="3" fill="#ece9d8" stroke="#245edb" stroke-width="1.5"/>
+  <rect x="2" y="3" width="28" height="8" rx="3" fill="url(#bar)"/>
+  <rect x="2" y="8" width="28" height="3" fill="url(#bar)"/>
+  <!-- close button -->
+  <rect x="23" y="5" width="5" height="4" rx="0.8" fill="#c63b2d"/>
+  <!-- bliss mini -->
+  <rect x="5" y="13" width="22" height="13" rx="1" fill="url(#sky)"/>
+  <!-- N monogram -->
+  <text x="16" y="23.5" text-anchor="middle" font-family="Tahoma, Arial, sans-serif" font-size="11" font-weight="700" fill="#0a246a">N</text>
+</svg>
