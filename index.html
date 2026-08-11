@@ -91,9 +91,11 @@
       position: relative;
       overflow: hidden;
       border: 2px solid #000;
+      border-radius: 2px;
       box-shadow:
         inset 0 0 0 1px #4a4a4a,
-        inset 0 0 40px rgba(0, 0, 0, 0.15);
+        inset 0 0 40px rgba(0, 0, 0, 0.18),
+        inset 0 0 90px rgba(0, 0, 0, 0.12);
       /* Bliss-inspired XP wallpaper */
       background:
         radial-gradient(ellipse 90% 55% at 50% 100%, rgba(255, 220, 120, 0.35) 0%, transparent 45%),
@@ -104,6 +106,117 @@
           #7cb342 52%,
           #5a9e2e 68%,
           #3d7a1f 100%);
+      image-rendering: pixelated;
+    }
+
+    /* Full-size stage — no scale (avoids cut-off) */
+    .screen-stage {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      image-rendering: pixelated;
+      -webkit-font-smoothing: none;
+    }
+
+    /* CRT overlays (visual only, no glitch, no warp filter) */
+    .crt-fx {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50000;
+      overflow: hidden;
+    }
+
+    /* Center bulge height falloff (lighting only) */
+    .crt-bulge {
+      background:
+        radial-gradient(
+          ellipse 38% 34% at 50% 44%,
+          rgba(255, 255, 255, 0.28) 0%,
+          rgba(255, 255, 255, 0.12) 32%,
+          rgba(255, 255, 255, 0.03) 58%,
+          transparent 78%
+        ),
+        radial-gradient(
+          ellipse 68% 62% at 50% 48%,
+          rgba(255, 255, 255, 0.08) 0%,
+          transparent 55%
+        ),
+        radial-gradient(
+          ellipse 85% 80% at 50% 50%,
+          transparent 18%,
+          rgba(0, 0, 0, 0.04) 42%,
+          rgba(0, 0, 0, 0.14) 68%,
+          rgba(0, 0, 0, 0.32) 88%,
+          rgba(0, 0, 0, 0.48) 100%
+        );
+      mix-blend-mode: soft-light;
+    }
+
+    .crt-bulge-depth {
+      background: radial-gradient(
+        ellipse 78% 74% at 50% 50%,
+        transparent 22%,
+        rgba(0, 0, 0, 0.05) 48%,
+        rgba(0, 0, 0, 0.16) 72%,
+        rgba(0, 0, 0, 0.34) 100%
+      );
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+    }
+
+    .crt-edge {
+      box-shadow:
+        inset 0 0 28px rgba(0, 0, 0, 0.18),
+        inset 0 0 55px rgba(0, 0, 0, 0.12);
+      background: radial-gradient(
+        ellipse 96% 94% at 50% 50%,
+        transparent 55%,
+        rgba(0, 0, 0, 0.12) 82%,
+        rgba(0, 0, 0, 0.32) 100%
+      );
+    }
+
+    .crt-scan {
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.12) 0px,
+        rgba(0, 0, 0, 0.12) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      opacity: 0.35;
+      mix-blend-mode: multiply;
+    }
+
+    .crt-rgb {
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 40, 40, 0.02) 0px,
+        rgba(40, 255, 40, 0.015) 1px,
+        rgba(40, 80, 255, 0.02) 2px,
+        transparent 3px
+      );
+      opacity: 0.4;
+      mix-blend-mode: screen;
+    }
+
+    .crt-noise {
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      mix-blend-mode: overlay;
+    }
+
+    .crt-glass {
+      background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.07) 0%,
+        rgba(255, 255, 255, 0.02) 14%,
+        transparent 36%,
+        transparent 74%,
+        rgba(0, 0, 0, 0.04) 100%
+      );
     }
 
     .brand {
@@ -999,95 +1112,106 @@
     <div class="screen-bezel">
       <div class="webcam" aria-hidden="true"></div>
       <div class="screen" id="screen">
-        <!-- Boot / welcome -->
-        <div class="welcome" id="welcome" role="dialog" aria-label="Welcome">
-          <div class="boot" id="bootLog">Microsoft Windows XP
+        <div class="screen-stage">
+          <!-- Boot / welcome -->
+          <div class="welcome" id="welcome" role="dialog" aria-label="Welcome">
+            <div class="boot" id="bootLog">Microsoft Windows XP
 Copyright © 1985-2001 Microsoft Corp.
 NithinOS build 2600
 
 Starting Windows ........</div>
-          <h1>Windows XP</h1>
-          <p>Nithin Kumar Reddy · Portfolio Desktop</p>
-          <button class="press" type="button" id="enterBtn">Log On →</button>
-        </div>
-
-        <!-- Desktop icons -->
-        <div class="desktop" id="desktop" aria-label="Desktop"></div>
-
-        <!-- Open windows -->
-        <div class="window-layer" id="windows"></div>
-
-        <!-- XP tip balloon -->
-        <div class="balloon" id="balloon" role="status">
-          <div class="balloon-title">
-            <span>Did you know?</span>
-            <button type="button" class="balloon-x" id="balloonClose" aria-label="Close">✕</button>
+            <h1>Windows XP</h1>
+            <p>Nithin Kumar Reddy · Portfolio Desktop</p>
+            <button class="press" type="button" id="enterBtn">Log On →</button>
           </div>
-          Double-click folders on the desktop to open them. Drag window edges to resize — just like Notepad.
-        </div>
 
-        <!-- Start menu -->
-        <div class="start-menu" id="startMenu" role="menu">
-          <div class="start-user">
-            <div class="start-avatar" aria-hidden="true">🧑‍💻</div>
-            <div>
-              <div class="start-user-name">Nithin Kumar Reddy</div>
-              <div class="start-user-sub">PES University · Bengaluru</div>
+          <!-- Desktop icons -->
+          <div class="desktop" id="desktop" aria-label="Desktop"></div>
+
+          <!-- Open windows -->
+          <div class="window-layer" id="windows"></div>
+
+          <!-- XP tip balloon -->
+          <div class="balloon" id="balloon" role="status">
+            <div class="balloon-title">
+              <span>Did you know?</span>
+              <button type="button" class="balloon-x" id="balloonClose" aria-label="Close">✕</button>
+            </div>
+            Double-click folders on the desktop to open them. Drag window edges to resize — just like Notepad.
+          </div>
+
+          <!-- Start menu -->
+          <div class="start-menu" id="startMenu" role="menu">
+            <div class="start-user">
+              <div class="start-avatar" aria-hidden="true">🧑‍💻</div>
+              <div>
+                <div class="start-user-name">Nithin Kumar Reddy</div>
+                <div class="start-user-sub">PES University · Bengaluru</div>
+              </div>
+            </div>
+            <div class="start-body">
+              <div class="start-left">
+                <button class="start-item start-item-lg" data-open="file:readme" type="button">
+                  <span class="si">📝</span>
+                  <span class="si-text"><span class="si-main">README.txt</span><span class="si-sub">Getting started</span></span>
+                </button>
+                <button class="start-item start-item-lg" data-open="file:aegis" type="button">
+                  <span class="si">⚙️</span>
+                  <span class="si-text"><span class="si-main">Aegis Engineer</span><span class="si-sub">Pinned project</span></span>
+                </button>
+                <div class="start-sep"></div>
+                <button class="start-item" data-open="folder:about" type="button"><span class="si">📁</span> About Me</button>
+                <button class="start-item" data-open="folder:projects" type="button"><span class="si">📁</span> Projects</button>
+                <button class="start-item" data-open="folder:oss" type="button"><span class="si">📁</span> Open Source</button>
+                <button class="start-item" data-open="folder:contact" type="button"><span class="si">📁</span> Contact</button>
+                <div class="start-sep"></div>
+                <button class="start-item" data-open="file:resume" type="button"><span class="si">📄</span> Resume.pdf</button>
+              </div>
+              <div class="start-right">
+                <button class="start-item" data-open="file:mycomputer" type="button"><span class="si">💻</span> My Computer</button>
+                <button class="start-item" data-open="folder:about" type="button"><span class="si">👤</span> My Documents</button>
+                <button class="start-item" data-open="folder:projects" type="button"><span class="si">📂</span> My Projects</button>
+                <button class="start-item" data-open="file:resume" type="button"><span class="si">📎</span> Recent Resume</button>
+                <div class="start-sep"></div>
+                <button class="start-item" data-open="file:links" type="button"><span class="si">🌐</span> Network Places</button>
+                <button class="start-item" data-open="file:help" type="button"><span class="si">❓</span> Help and Support</button>
+              </div>
+            </div>
+            <div class="start-footer">
+              <button type="button" id="logoffBtn"><span>🚪</span> Log Off</button>
+              <button type="button" id="shutdownBtn"><span>⏻</span> Turn Off Computer</button>
             </div>
           </div>
-          <div class="start-body">
-            <div class="start-left">
-              <button class="start-item start-item-lg" data-open="file:readme" type="button">
-                <span class="si">📝</span>
-                <span class="si-text"><span class="si-main">README.txt</span><span class="si-sub">Getting started</span></span>
-              </button>
-              <button class="start-item start-item-lg" data-open="file:aegis" type="button">
-                <span class="si">⚙️</span>
-                <span class="si-text"><span class="si-main">Aegis Engineer</span><span class="si-sub">Pinned project</span></span>
-              </button>
-              <div class="start-sep"></div>
-              <button class="start-item" data-open="folder:about" type="button"><span class="si">📁</span> About Me</button>
-              <button class="start-item" data-open="folder:projects" type="button"><span class="si">📁</span> Projects</button>
-              <button class="start-item" data-open="folder:oss" type="button"><span class="si">📁</span> Open Source</button>
-              <button class="start-item" data-open="folder:contact" type="button"><span class="si">📁</span> Contact</button>
-              <div class="start-sep"></div>
-              <button class="start-item" data-open="file:resume" type="button"><span class="si">📄</span> Resume.pdf</button>
+
+          <!-- Taskbar -->
+          <div class="taskbar">
+            <button class="start-btn" id="startBtn" type="button" aria-haspopup="true" aria-expanded="false">
+              <span class="start-logo" aria-hidden="true"></span>
+              start
+            </button>
+            <div class="quick-launch" aria-label="Quick Launch">
+              <button type="button" class="ql-btn" id="showDesktop" title="Show Desktop">🖥️</button>
+              <button type="button" class="ql-btn" data-open="folder:projects" title="Projects">📁</button>
+              <button type="button" class="ql-btn" data-open="file:resume" title="Resume">📄</button>
             </div>
-            <div class="start-right">
-              <button class="start-item" data-open="file:mycomputer" type="button"><span class="si">💻</span> My Computer</button>
-              <button class="start-item" data-open="folder:about" type="button"><span class="si">👤</span> My Documents</button>
-              <button class="start-item" data-open="folder:projects" type="button"><span class="si">📂</span> My Projects</button>
-              <button class="start-item" data-open="file:resume" type="button"><span class="si">📎</span> Recent Resume</button>
-              <div class="start-sep"></div>
-              <button class="start-item" data-open="file:links" type="button"><span class="si">🌐</span> Network Places</button>
-              <button class="start-item" data-open="file:help" type="button"><span class="si">❓</span> Help and Support</button>
+            <div class="task-btns" id="taskBtns"></div>
+            <div class="tray">
+              <span title="Volume">🔊</span>
+              <span title="Network">📶</span>
+              <span title="Security">🛡️</span>
+              <span id="clock">12:00</span>
             </div>
-          </div>
-          <div class="start-footer">
-            <button type="button" id="logoffBtn"><span>🚪</span> Log Off</button>
-            <button type="button" id="shutdownBtn"><span>⏻</span> Turn Off Computer</button>
           </div>
         </div>
 
-        <!-- Taskbar -->
-        <div class="taskbar">
-          <button class="start-btn" id="startBtn" type="button" aria-haspopup="true" aria-expanded="false">
-            <span class="start-logo" aria-hidden="true"></span>
-            start
-          </button>
-          <div class="quick-launch" aria-label="Quick Launch">
-            <button type="button" class="ql-btn" id="showDesktop" title="Show Desktop">🖥️</button>
-            <button type="button" class="ql-btn" data-open="folder:projects" title="Projects">📁</button>
-            <button type="button" class="ql-btn" data-open="file:resume" title="Resume">📄</button>
-          </div>
-          <div class="task-btns" id="taskBtns"></div>
-          <div class="tray">
-            <span title="Volume">🔊</span>
-            <span title="Network">📶</span>
-            <span title="Security">🛡️</span>
-            <span id="clock">12:00</span>
-          </div>
-        </div>
+        <!-- Soft CRT FX only (pre–go-all-out) -->
+        <div class="crt-fx crt-bulge" aria-hidden="true"></div>
+        <div class="crt-fx crt-bulge-depth" aria-hidden="true"></div>
+        <div class="crt-fx crt-edge" aria-hidden="true"></div>
+        <div class="crt-fx crt-scan" aria-hidden="true"></div>
+        <div class="crt-fx crt-rgb" aria-hidden="true"></div>
+        <div class="crt-fx crt-noise" aria-hidden="true"></div>
+        <div class="crt-fx crt-glass" aria-hidden="true"></div>
       </div>
       <div class="brand">NithinKR · Portable Workstation</div>
     </div>
