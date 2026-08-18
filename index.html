@@ -32,7 +32,8 @@
       --font: Tahoma, "MS Sans Serif", "Segoe UI", sans-serif;
       --mono: "Lucida Console", "IBM Plex Mono", "Courier New", monospace;
       --taskbar-h: 42px;
-      --title-h: 26px;
+      --title-h: 30px;
+      --ui-font: 14px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,6 +42,7 @@
       height: 100%;
       overflow: hidden;
       font-family: var(--font);
+      font-size: var(--ui-font);
       background: #0d0d0d;
       color: var(--black);
       user-select: none;
@@ -96,7 +98,7 @@
         inset 0 0 0 1px #4a4a4a,
         inset 0 0 40px rgba(0, 0, 0, 0.18),
         inset 0 0 90px rgba(0, 0, 0, 0.12);
-      /* Bliss-inspired XP wallpaper */
+      /* wallpapers set via data-wp */
       background:
         radial-gradient(ellipse 90% 55% at 50% 100%, rgba(255, 220, 120, 0.35) 0%, transparent 45%),
         linear-gradient(180deg,
@@ -107,6 +109,127 @@
           #5a9e2e 68%,
           #3d7a1f 100%);
       image-rendering: pixelated;
+    }
+
+    .screen[data-wp="bliss"] {
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 100%, rgba(255, 220, 120, 0.35) 0%, transparent 45%),
+        linear-gradient(180deg, #5ba3e0 0%, #7eb8e8 28%, #a8d0ef 48%, #7cb342 52%, #5a9e2e 68%, #3d7a1f 100%);
+    }
+    .screen[data-wp="teal"] {
+      background: #008080;
+    }
+    .screen[data-wp="luna"] {
+      background: linear-gradient(180deg, #3a6ea5 0%, #245edb 40%, #163f9a 100%);
+    }
+    .screen[data-wp="clouds"] {
+      background:
+        radial-gradient(ellipse 40% 18% at 20% 28%, rgba(255,255,255,0.95), transparent 70%),
+        radial-gradient(ellipse 50% 22% at 62% 22%, rgba(255,255,255,0.85), transparent 70%),
+        radial-gradient(ellipse 35% 16% at 80% 40%, rgba(255,255,255,0.7), transparent 70%),
+        linear-gradient(180deg, #6eb6e6 0%, #b8dcf2 55%, #e8f4fc 100%);
+    }
+    .screen[data-wp="stars"] {
+      background:
+        radial-gradient(1px 1px at 12% 20%, #fff, transparent),
+        radial-gradient(1px 1px at 28% 55%, #dde, transparent),
+        radial-gradient(1.5px 1.5px at 70% 18%, #fff, transparent),
+        radial-gradient(1px 1px at 85% 62%, #ccf, transparent),
+        radial-gradient(1px 1px at 44% 80%, #fff, transparent),
+        radial-gradient(1px 1px at 58% 36%, #eef, transparent),
+        radial-gradient(1.5px 1.5px at 8% 72%, #fff, transparent),
+        linear-gradient(180deg, #020014 0%, #0a1030 50%, #1a1440 100%);
+    }
+    .screen[data-wp="olive"] {
+      background: linear-gradient(180deg, #6b7c32 0%, #4a5a22 40%, #2f3a16 100%);
+    }
+    .screen[data-wp="desert"] {
+      background:
+        linear-gradient(180deg, #87b8d8 0%, #f0d08a 42%, #d4a056 70%, #b87a3a 100%);
+    }
+    .screen[data-wp="gray"] {
+      background: #3a6ea5;
+    }
+
+    .desk-icon.refreshing {
+      animation: ico-blink 0.18s ease-out 1;
+    }
+    @keyframes ico-blink {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .wp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 4px 0;
+    }
+    .wp-swatch {
+      border: 2px solid #808080;
+      height: 72px;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+      font: inherit;
+      padding: 0;
+    }
+    .wp-swatch:hover, .wp-swatch.selected {
+      border-color: #316ac5;
+      outline: 1px dotted #000;
+    }
+    .wp-swatch span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255,255,255,0.82);
+      font-size: 11px;
+      padding: 2px 4px;
+      text-align: left;
+    }
+
+    /* Per-window notepad font controls (replaces File/Edit/View/Help) */
+    .win-menu.doc-font-menu {
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .win-menu.doc-font-menu .fm-label {
+      font-size: 12px;
+      color: #333;
+      padding: 0 2px;
+    }
+    .win-menu.doc-font-menu input[type="range"] {
+      width: 110px;
+      accent-color: #316ac5;
+    }
+    .win-menu.doc-font-menu .fm-value {
+      font-family: var(--mono);
+      font-size: 12px;
+      min-width: 2.6rem;
+    }
+    .win-menu.doc-font-menu .fm-btn {
+      font: inherit;
+      font-size: 12px;
+      padding: 2px 8px;
+      border: 1px solid #aca899;
+      background: linear-gradient(180deg, #fff, #ece9d8);
+      cursor: default;
+    }
+    .win-menu.doc-font-menu .fm-btn:hover {
+      border-color: #316ac5;
+      background: #e8f0fc;
+    }
+
+    .brand {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: #666;
+      margin-top: 5px;
+      text-transform: uppercase;
     }
 
     /* Full-size stage — no scale (avoids cut-off) */
@@ -219,36 +342,26 @@
       );
     }
 
-    .brand {
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      color: #666;
-      margin-top: 5px;
-      text-transform: uppercase;
-    }
-
     /* —— Desktop icons —— */
     .desktop {
       position: absolute;
       inset: 0;
-      padding: 14px 10px 58px;
+      padding: 16px 12px 62px;
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
       align-content: flex-start;
-      gap: 10px 8px;
+      gap: 12px 10px;
       z-index: 1;
     }
 
     .desk-icon {
-      width: 104px;
+      width: 120px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      padding: 8px 6px;
+      gap: 8px;
+      padding: 10px 8px;
       border: 1px solid transparent;
       background: transparent;
       cursor: default;
@@ -267,21 +380,21 @@
     .desk-icon:active { transform: translate(1px, 1px); }
 
     .icon-art {
-      width: 48px;
-      height: 44px;
+      width: 56px;
+      height: 52px;
       image-rendering: pixelated;
       display: grid;
       place-items: center;
-      font-size: 36px;
+      font-size: 44px;
       line-height: 1;
       filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.4));
     }
 
     .desk-icon .label {
-      font-size: 12.5px;
+      font-size: var(--ui-font);
       text-align: center;
       line-height: 1.25;
-      max-width: 96px;
+      max-width: 112px;
       word-break: break-word;
       text-shadow:
         1px 1px 0 #000,
@@ -301,10 +414,10 @@
       flex-shrink: 0;
     }
     .ex-btn {
-      min-width: 28px;
-      height: 24px;
-      padding: 0 6px;
-      font-size: 12px;
+      min-width: 32px;
+      height: 28px;
+      padding: 0 8px;
+      font-size: 14px;
       font-family: var(--font);
       background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
       border: 1px solid #aca899;
@@ -319,9 +432,9 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      height: 24px;
-      padding: 0 8px;
-      font-size: 11px;
+      height: 28px;
+      padding: 0 10px;
+      font-size: 13px;
       background: #fff;
       border: 1px solid #7f9db9;
       color: #222;
@@ -337,16 +450,16 @@
       min-height: 0;
     }
     .explorer-nav {
-      width: 140px;
+      width: 168px;
       flex-shrink: 0;
       background: linear-gradient(180deg, #7ba2e7 0%, #6375d6 100%);
       color: #fff;
-      padding: 10px 8px;
-      font-size: 11px;
+      padding: 12px 10px;
+      font-size: 13px;
       overflow: auto;
     }
     .explorer-nav h4 {
-      font-size: 11px;
+      font-size: 13px;
       margin: 0 0 8px;
       padding-bottom: 4px;
       border-bottom: 1px solid rgba(255,255,255,0.35);
@@ -360,8 +473,8 @@
       border: none;
       color: #fff;
       font: inherit;
-      font-size: 11px;
-      padding: 5px 4px;
+      font-size: 13px;
+      padding: 7px 4px;
       cursor: default;
       border-radius: 2px;
     }
@@ -559,8 +672,8 @@
 
     .win {
       position: absolute;
-      min-width: 220px;
-      min-height: 140px;
+      min-width: 280px;
+      min-height: 180px;
       max-width: none;
       max-height: none;
       display: flex;
@@ -602,10 +715,10 @@
       height: var(--title-h);
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 0 4px 0 6px;
+      gap: 7px;
+      padding: 0 5px 0 8px;
       color: #fff;
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 700;
       cursor: grab;
       flex-shrink: 0;
@@ -615,7 +728,7 @@
     .titlebar:active { cursor: grabbing; }
 
     .titlebar .t-icon {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1;
       filter: drop-shadow(0 1px 0 rgba(0,0,0,0.3));
     }
@@ -633,9 +746,9 @@
     }
 
     .t-btn {
-      width: 21px;
-      height: 21px;
-      font-size: 11px;
+      width: 24px;
+      height: 23px;
+      font-size: 12px;
       line-height: 1;
       display: grid;
       place-items: center;
@@ -702,8 +815,8 @@
     .win-menu {
       display: flex;
       gap: 2px;
-      padding: 2px 4px;
-      font-size: 11px;
+      padding: 3px 6px;
+      font-size: 13px;
       border-bottom: 1px solid var(--silver-dk);
       background: var(--silver);
       flex-shrink: 0;
@@ -733,10 +846,10 @@
     }
 
     .win-status {
-      height: 20px;
+      height: 22px;
       margin: 2px 3px 3px;
-      padding: 0 6px;
-      font-size: 11px;
+      padding: 0 8px;
+      font-size: 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -759,12 +872,12 @@
     }
 
     .file-icon {
-      width: 100px;
+      width: 118px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
-      padding: 8px 5px;
+      gap: 6px;
+      padding: 10px 6px;
       border: 1px dotted transparent;
       background: transparent;
       cursor: default;
@@ -781,16 +894,16 @@
     }
 
     .file-icon .f-art {
-      font-size: 34px;
+      font-size: 42px;
       line-height: 1;
       filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.15));
     }
 
     .file-icon .f-label {
-      font-size: 12px;
+      font-size: var(--ui-font);
       text-align: center;
-      line-height: 1.2;
-      max-width: 92px;
+      line-height: 1.25;
+      max-width: 108px;
       word-break: break-word;
     }
 
@@ -806,8 +919,8 @@
     .doc-toolbar {
       display: flex;
       gap: 8px;
-      padding: 3px 8px;
-      font-size: 11px;
+      padding: 4px 10px;
+      font-size: 13px;
       background: var(--silver);
       border-bottom: 1px solid var(--silver-dk);
       color: #333;
@@ -817,9 +930,9 @@
     .doc-body {
       flex: 1;
       min-height: 0;
-      padding: 14px 16px;
+      padding: 16px 18px;
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: var(--ui-font);
       line-height: 1.55;
       color: #111;
       overflow: auto;
@@ -829,7 +942,7 @@
 
     .doc-body h3 {
       font-family: var(--font);
-      font-size: 13px;
+      font-size: 16px;
       margin: 0 0 8px;
       border-bottom: 1px solid #ccc;
       padding-bottom: 5px;
@@ -848,7 +961,7 @@
     }
     .doc-body .meta {
       color: #555;
-      font-size: 11px;
+      font-size: 13px;
       margin: 0 0 12px;
     }
     .doc-body .chips {
@@ -1051,39 +1164,83 @@
       cursor: pointer;
     }
 
+    /* XP context menu */
+    .ctx-menu {
+      position: absolute;
+      z-index: 60000;
+      min-width: 188px;
+      padding: 3px 2px;
+      background: #fff;
+      border: 1px solid #808080;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+      display: none;
+      font-size: 13px;
+      color: #000;
+    }
+    .ctx-menu.open { display: block; }
+    .ctx-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      text-align: left;
+      padding: 5px 18px 5px 12px;
+      border: none;
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      color: #000;
+      cursor: default;
+    }
+    .ctx-item:hover:not(:disabled) {
+      background: #316ac5;
+      color: #fff;
+    }
+    .ctx-item:disabled {
+      color: #808080;
+    }
+    .ctx-item b { font-weight: 700; }
+    .ctx-sep {
+      height: 1px;
+      margin: 4px 4px;
+      background: #e0e0e0;
+      border-bottom: 1px solid #fff;
+    }
+
     .welcome.hidden { display: none; }
 
     .welcome h1 {
-      font-size: clamp(22px, 4vw, 32px);
-      margin-bottom: 8px;
+      font-size: clamp(30px, 5.2vw, 46px);
+      margin-bottom: 10px;
       letter-spacing: 0.02em;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
     }
 
     .welcome p {
-      font-size: 13px;
+      font-size: clamp(14px, 1.9vw, 17px);
       opacity: 0.95;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .welcome .boot {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: clamp(12px, 1.5vw, 15px);
       color: #d6ebff;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       text-align: left;
-      width: min(320px, 80%);
+      width: min(440px, 86%);
       white-space: pre-line;
+      line-height: 1.55;
     }
 
     .welcome .press {
       border: 1px solid #1f5a08;
-      border-radius: 4px;
+      border-radius: 5px;
       background: linear-gradient(180deg, #5cba2c 0%, #3c8d0d 100%);
       color: #fff;
-      padding: 8px 18px;
+      padding: 11px 24px;
       font-weight: 700;
-      font-size: 12px;
+      font-size: clamp(14px, 1.8vw, 16px);
       font-family: var(--font);
       text-shadow: 0 1px 0 rgba(0,0,0,0.35);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
@@ -1097,9 +1254,9 @@
         padding: 5px 5px 6px;
       }
       .webcam, .brand { display: none; }
-      .desk-icon { width: 88px; }
-      .icon-art { font-size: 30px; width: 40px; height: 38px; }
-      .desk-icon .label { font-size: 11px; max-width: 84px; }
+      .desk-icon { width: 100px; }
+      .icon-art { font-size: 36px; width: 48px; height: 44px; }
+      .desk-icon .label { font-size: 12.5px; max-width: 96px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1212,6 +1369,7 @@ Starting Windows ........</div>
         <div class="crt-fx crt-rgb" aria-hidden="true"></div>
         <div class="crt-fx crt-noise" aria-hidden="true"></div>
         <div class="crt-fx crt-glass" aria-hidden="true"></div>
+        <div class="ctx-menu" id="ctxMenu" role="menu"></div>
       </div>
       <div class="brand">NithinKR · Portable Workstation</div>
     </div>
@@ -1285,7 +1443,7 @@ Starting Windows ........</div>
         type: "folder",
         name: "Projects",
         icon: "📁",
-        files: ["aegis", "pipeline", "demogen"],
+        files: ["imagedet", "aegis", "pipeline", "demogen"],
       },
       oss: {
         type: "folder",
@@ -1304,8 +1462,8 @@ Starting Windows ........</div>
         name: "Resume.pdf",
         icon: "📄",
         kind: "link",
-        href: "resume/Nithin_Kumar_Reddy.pdf",
-        download: "Nithin_Kumar_Reddy_Resume.pdf",
+        href: "resume/Nithin_Reddy_RESUME_2.pdf",
+        download: "Nithin_Reddy_RESUME_2.pdf",
       },
       readme: {
         type: "file",
@@ -1353,15 +1511,18 @@ Starting Windows ........</div>
         title: "skills.txt",
         html: `
           <h3>skills.txt</h3>
+          <p class="meta">Technical skills · from resume</p>
           <p><b>Languages:</b> Python, C/C++, Java, JavaScript/TypeScript, SQL, Bash</p>
-          <p><b>Backend & APIs:</b> FastAPI, Node.js, Express, REST, WebSockets, JWT/OAuth</p>
-          <p><b>Cloud & Data:</b> Azure (ADF, Functions, ADLS), Databricks, Spark, Kafka, AWS, Docker, Kubernetes, Linux, Git</p>
-          <p><b>AI/ML:</b> Multi-agent systems, RAG, LangChain, Transformers, scikit-learn, TensorFlow, OpenCV</p>
-          <p><b>Frontend & Tooling:</b> React, Playwright, FFmpeg, HTML/CSS</p>
+          <p><b>Backend &amp; APIs:</b> FastAPI, Node.js, Express, REST, WebSockets, JWT/OAuth</p>
+          <p><b>Cloud &amp; Data:</b> Azure (ADF, Functions, ADLS), Databricks, Spark, Kafka, AWS, Docker, Kubernetes, Linux, Git</p>
+          <p><b>AI/ML:</b> Multi-agent systems, RAG, LangChain, Transformers, scikit-learn, TensorFlow, OpenCV, CLIP, pHash</p>
+          <p><b>Frontend &amp; Tooling:</b> React, Playwright, FFmpeg, HTML/CSS</p>
           <p><b>Databases:</b> PostgreSQL, MySQL, MongoDB, SQLite, Firebase, Supabase</p>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Azure</span>
-            <span class="chip">Agents</span><span class="chip">AWS</span><span class="chip">React</span>
+            <span class="chip">AWS</span><span class="chip">Agents</span><span class="chip">RAG</span>
+            <span class="chip">CLIP</span><span class="chip">React</span><span class="chip">Docker</span>
+            <span class="chip">Kubernetes</span><span class="chip">PostgreSQL</span>
           </div>
         `,
       },
@@ -1370,13 +1531,22 @@ Starting Windows ........</div>
         title: "experience.txt",
         html: `
           <h3>experience.txt</h3>
-          <p class="meta">IFSCR, PES University · Jun – Aug 2025 · Research Intern</p>
-          <p><b>Center for Information Security, Forensics and Cyber Resilience</b> — Digital image forensics</p>
+
+          <p class="meta">IFSCR, PES University · Summer Research Intern · Jun – Aug 2025 · Digital image forensics</p>
+          <p><b>Center for Information Security, Forensics and Cyber Resilience</b></p>
           <ul>
-            <li>End-to-end image provenance pipeline for original-source detection of manipulated/reposted images (feature matching + temporal graph analysis).</li>
-            <li>Modeled dissemination as a time-aware graph over users/posts; traced origin under reuploads, crops, and reposts.</li>
-            <li>SIFT-based robust matching (scale/crop/rotation); combined similarity + graph signals into confidence-ranked source prediction.</li>
-            <li>Research prototype with reproducible evaluation for multi-hop image reuse scenarios.</li>
+            <li>Built <b>image-source-detection</b>, a forensics pipeline that finds the original source of images moving through a social-style network using <b>CLIP</b> and <b>pHash</b> fingerprints plus a <b>NetworkX</b> user–post graph (not metadata alone).</li>
+            <li>Ranks candidates with combined similarity scores, picks the earliest strong origin by timestamp/path/score, and shows side-by-side evidence in a Tkinter demo for multi-hop cases.</li>
+            <li>Added unit tests for scoring and origin logic; used interactive post/follow/trace demos to walk stakeholders through the workflow.</li>
+            <li>Repo: <a href="https://github.com/Nithin078/image-source-detection" target="_blank" rel="noopener">github.com/Nithin078/image-source-detection</a></li>
+          </ul>
+
+          <p class="meta" style="margin-top:16px">Prowler · Software Engineer Intern · Jun 2026 – Present · Remote</p>
+          <p><b>Prowler</b> — <a href="https://prowler.com" target="_blank" rel="noopener">prowler.com</a></p>
+          <ul>
+            <li>Contributing to <b>Prowler</b> (14.6k+ GitHub stars), an open-source, agentic cloud security platform used to automate security assessments, compliance checks, and misconfiguration detection across multi-cloud environments.</li>
+            <li>Working on the product and platform side: implementing and extending AWS/cloud security checks, improving service coverage, and shipping production-quality contributions with tests, documentation, and reviewable PRs.</li>
+            <li>Collaborating with the core team on real-world security use cases — turning detection logic into reliable, maintainable features that run in production scanning workflows.</li>
           </ul>
         `,
       },
@@ -1407,6 +1577,21 @@ Starting Windows ........</div>
               · <a href="https://www.hackerrank.com/skills-verification/problem_solving_intermediate" target="_blank" rel="noopener">[skill]</a>
             </li>
           </ul>
+        `,
+      },
+      imagedet: {
+        type: "file", name: "Image_Source_Detection.txt", icon: "📝", kind: "doc",
+        title: "Image_Source_Detection.txt",
+        html: `
+          <h3>Image Source Detection</h3>
+          <p class="meta">2025 · IFSCR internship project · <a href="https://github.com/Nithin078/image-source-detection" target="_blank" rel="noopener">github.com/Nithin078/image-source-detection</a></p>
+          <p><b>The question:</b> given a suspicious or reposted image, who likely posted the original, and how did copies move through a social network?</p>
+          <p>Metadata is easy to strip or fake, so this prototype does <b>not</b> rely on it alone. Every upload gets a visual fingerprint (<b>CLIP</b> embeddings + <b>pHash</b>). A <b>NetworkX</b> graph models users, posts, and repost edges. On a query, the system ranks near-duplicates and walks those edges back to the earliest strong match (timestamp + path + score).</p>
+          <p>A Tkinter demo shows side-by-side evidence for multi-hop reuse. Unit tests cover scoring and origin logic. Built as IFSCR project P11 (<i>Image Source Identification in Social-Media-Like Networks</i>) — cleaned CLIP + graph code, not the earlier SIFT drafts.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">CLIP</span><span class="chip">pHash</span>
+            <span class="chip">NetworkX</span><span class="chip">Tkinter</span><span class="chip">Forensics</span>
+          </div>
         `,
       },
       aegis: {
@@ -1454,8 +1639,12 @@ Starting Windows ........</div>
         title: "Prowler_EC2.txt",
         html: `
           <h3>Prowler — EC2 stopped instances</h3>
-          <p class="meta">2025 · Merged · <a href="https://github.com/prowler-cloud/prowler/pull/12076" target="_blank" rel="noopener">PR #12076</a></p>
-          <p>Added a configurable AWS check that fails when an EC2 instance has been stopped longer than a threshold (default 30 days). Duration is taken from state-transition metadata, not launch time, so long-stopped instances holding EBS, IAM profiles, and keys get flagged for review. Includes model, config, docs, fixtures, and unit tests.</p>
+          <p class="meta">2026 · Merged · <a href="https://github.com/prowler-cloud/prowler/pull/12076" target="_blank" rel="noopener">PR #12076</a> · prowler-cloud/prowler</p>
+          <p><b>What Prowler is:</b> a widely used open-source cloud security platform that scans AWS (and other clouds) for misconfigurations.</p>
+          <p><b>The problem:</b> EC2 instances left <i>stopped</i> for weeks still hold EBS volumes, IAM instance profiles, and keys — but they look “off,” so they often go unreviewed. Using launch time would be wrong, because a stopped box isn’t “age since created.”</p>
+          <p><b>What I shipped:</b> a new check, <code>ec2_instance_stopped_older_than_specific_days</code>. It fails when an instance has been stopped longer than an admin-set threshold (default 30 days). Duration comes from AWS <i>state-transition</i> metadata, not LaunchTime.</p>
+          <p><b>Also included:</b> service-model update, config schema + Helm values, docs, fixtures, and unit tests (no instances / running / under threshold / over threshold).</p>
+          <p>This is an external contribution into Prowler’s AWS check library — not a personal demo repo.</p>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">AWS</span><span class="chip">EC2</span>
             <span class="chip">Prowler</span><span class="chip">Cloud security</span>
@@ -1467,8 +1656,11 @@ Starting Windows ........</div>
         title: "Prowler_SageMaker.txt",
         html: `
           <h3>Prowler — SageMaker KMS encryption</h3>
-          <p class="meta">2026 · <a href="https://github.com/prowler-cloud/prowler/pull/12118" target="_blank" rel="noopener">PR #12118</a></p>
-          <p>New SageMaker check that passes only when an endpoint configuration has a KMS key set for at-rest encryption. Extended the service model to collect KmsKeyId, with unit tests for missing vs present keys and a changelog fragment.</p>
+          <p class="meta">2026 · <a href="https://github.com/prowler-cloud/prowler/pull/12118" target="_blank" rel="noopener">PR #12118</a> · prowler-cloud/prowler</p>
+          <p><b>The problem:</b> SageMaker endpoint configurations can serve models without at-rest KMS encryption if <code>KmsKeyId</code> is omitted. That’s a silent encryption gap in a production ML path.</p>
+          <p><b>What I shipped:</b> a new check, <code>sagemaker_endpoint_config_kms_encryption_enabled</code>. It <b>passes</b> only when the endpoint config has a KMS key set, and <b>fails</b> when the key is missing.</p>
+          <p><b>How:</b> extended Prowler’s SageMaker service model to collect <code>KmsKeyId</code> from <code>DescribeEndpointConfig</code>, then wired the check + unit tests (no configs / missing KMS / present KMS) and a changelog fragment.</p>
+          <p>Same idea as the EC2 check: a real compliance rule in a public security scanner, with tests and service-model work — not just a one-off script.</p>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">AWS</span><span class="chip">SageMaker</span>
             <span class="chip">KMS</span><span class="chip">Prowler</span>
@@ -1480,8 +1672,11 @@ Starting Windows ........</div>
         title: "Memgraph.txt",
         html: `
           <h3>Memgraph — query planner SIGSEGV fix</h3>
-          <p class="meta">2026 · <a href="https://github.com/memgraph/memgraph/pull/4490" target="_blank" rel="noopener">PR #4490</a></p>
-          <p>Fixed a crash in Memgraph’s Cypher planner when EXISTS subqueries contain only a RETURN (no MATCH). The planner null-dereferenced input_op on that path; the fix seeds a safe Once operator so RETURN-only EXISTS and related pattern-comprehension filters plan cleanly.</p>
+          <p class="meta">2026 · Merged · <a href="https://github.com/memgraph/memgraph/pull/4490" target="_blank" rel="noopener">PR #4490</a> · memgraph/memgraph</p>
+          <p><b>What Memgraph is:</b> a high-performance open-source graph database (C++). Queries are written in Cypher and compiled through a planner before they run.</p>
+          <p><b>The crash:</b> some valid Cypher — an <code>EXISTS</code> subquery that only has <code>RETURN</code> (no <code>MATCH</code>) — would segfault the process (exit 139). Example: <code>MATCH (n) WHERE exists { RETURN n } RETURN n</code>. The same path also hit pattern-comprehension filters.</p>
+          <p><b>Root cause:</b> on the existential planning path, <code>RETURN</code> is dropped (EXISTS only cares if a row exists). For RETURN-only subqueries that left <code>input_op</code> as null, the planner then called <code>input_op-&gt;OutputSymbols(...)</code> and crashed.</p>
+          <p><b>The fix:</b> when inside an EXISTS subquery with no prior operator, seed a safe <code>Once</code> operator bound to the outer symbols so the planner never dereferences null. Queries that used to kill the server now plan and run.</p>
           <div class="chips">
             <span class="chip">C++</span><span class="chip">Memgraph</span><span class="chip">Cypher</span>
             <span class="chip">Query planner</span><span class="chip">Bugfix</span>
@@ -1493,8 +1688,17 @@ Starting Windows ........</div>
         title: "OpenSRE.txt",
         html: `
           <h3>OpenSRE — conversation turn unit tests</h3>
-          <p class="meta">2026 · Merged · <a href="https://github.com/Tracer-Cloud/opensre/pull/4401" target="_blank" rel="noopener">PR #4401</a></p>
-          <p>Added focused unit tests for the agent harness helper that records conversation turns — covering append, in-window behavior, summary compaction when the message window overflows, and in-place list updates so external aliases stay in sync. Tests only; no production code changes.</p>
+          <p class="meta">2026 · Merged · <a href="https://github.com/Tracer-Cloud/opensre/pull/4401" target="_blank" rel="noopener">PR #4401</a> · Tracer-Cloud/opensre</p>
+          <p><b>What OpenSRE is:</b> an open-source framework for AI SRE agents (incident investigation / conversation harness) maintained by Tracer Cloud.</p>
+          <p><b>The gap:</b> <code>record_conversation_turn</code> — the helper that appends user/assistant messages and compacting a sliding window — was only covered indirectly via orchestrator tests. Window overflow and in-place list updates could regress without a focused failure.</p>
+          <p><b>What I shipped:</b> a dedicated unit-test module (no production code change) covering:</p>
+          <ul>
+            <li><b>Append</b> — a turn adds user + assistant messages</li>
+            <li><b>In-window</b> — stays under the max without compacting</li>
+            <li><b>Overflow</b> — extra turns trigger a leading “Session summary:” compaction</li>
+            <li><b>In-place update</b> — the same list object is mutated so external aliases still see changes</li>
+          </ul>
+          <p>Net: the agent harness is safer to change — conversation memory behavior is locked down by tests, not only by e2e luck.</p>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">OpenSRE</span><span class="chip">Agent harness</span>
             <span class="chip">Testing</span><span class="chip">AI SRE</span>
@@ -1506,8 +1710,11 @@ Starting Windows ........</div>
         title: "RTK_CI.txt",
         html: `
           <h3>RTK — guard CD pipeline on forks</h3>
-          <p class="meta">2026 · <a href="https://github.com/rtk-ai/rtk/pull/3251" target="_blank" rel="noopener">PR #3251</a></p>
-          <p>Locked pre-release and release-please entry jobs in the CD workflow to the canonical rtk-ai org. Forks lack release tags, so those jobs always failed on push; downstream jobs already no-op on empty outputs — this stops the red X on every fork pipeline run.</p>
+          <p class="meta">2026 · <a href="https://github.com/rtk-ai/rtk/pull/3251" target="_blank" rel="noopener">PR #3251</a> · rtk-ai/rtk</p>
+          <p><b>What RTK is:</b> a large open-source project whose GitHub Actions CD workflow runs pre-release and release-please jobs on push.</p>
+          <p><b>The failure:</b> contributors who forked the repo saw every push to <code>develop</code>/<code>master</code> turn red. Forks don’t inherit the canonical release tags, so the pre-release job died with “No stable release tag found.” Downstream jobs already skipped on empty outputs — only the two <i>entry</i> jobs were still running (and failing) on forks.</p>
+          <p><b>What I shipped:</b> a guard on those entry jobs: they run only when <code>github.repository_owner == rtk-ai</code>. On a fork, CD still starts but pre-release / release-please are skipped (no red X). On the real repo, release behavior is unchanged.</p>
+          <p>Small YAML change, real contributor experience win: forks stop looking “broken” for a failure they can never fix.</p>
           <div class="chips">
             <span class="chip">GitHub Actions</span><span class="chip">CI/CD</span>
             <span class="chip">Release</span><span class="chip">RTK</span>
@@ -1548,8 +1755,8 @@ Starting Windows ........</div>
       },
       resume_shortcut: {
         type: "file", name: "Resume.pdf", icon: "📄", kind: "url",
-        href: "resume/Nithin_Kumar_Reddy.pdf",
-        download: "Nithin_Kumar_Reddy_Resume.pdf",
+        href: "resume/Nithin_Reddy_RESUME_2.pdf",
+        download: "Nithin_Reddy_RESUME_2.pdf",
       },
       links: {
         type: "file", name: "all_links.txt", icon: "🔗", kind: "doc",
@@ -1563,13 +1770,16 @@ Starting Windows ........</div>
             <li><a href="https://github.com/Nithin078" target="_blank" rel="noopener">GitHub — Nithin078</a></li>
             <li><a href="https://linkedin.com/in/r-nithin-kumar-reddy" target="_blank" rel="noopener">LinkedIn — r-nithin-kumar-reddy</a></li>
             <li><a href="https://nithin078.github.io" target="_blank" rel="noopener">Website — nithin078.github.io</a></li>
-            <li><a href="resume/Nithin_Kumar_Reddy.pdf" download="Nithin_Kumar_Reddy_Resume.pdf">Resume.pdf (download)</a></li>
+            <li><a href="resume/Nithin_Reddy_RESUME_2.pdf" download="Nithin_Reddy_RESUME_2.pdf">Resume.pdf (download)</a></li>
           </ul>
         `,
       },
     };
 
-    const DESKTOP_ORDER = ["mycomputer", "about", "projects", "oss", "contact", "resume", "readme", "recycle"];
+    let DESKTOP_ORDER = ["mycomputer", "about", "projects", "oss", "contact", "resume", "readme", "recycle"];
+    const DESKTOP_DEFAULT = DESKTOP_ORDER.slice();
+    let lastCopied = "";
+    let wallpaper = "bliss";
 
     /* ========== Window manager ========== */
     let zTop = 20;
@@ -1577,8 +1787,8 @@ Starting Windows ........</div>
     let activeId = null;
     let drag = null;
     let resize = null;
-    const MIN_W = 220;
-    const MIN_H = 140;
+    const MIN_W = 280;
+    const MIN_H = 180;
 
     function screenBounds() {
       return document.getElementById("screen").getBoundingClientRect();
@@ -1618,6 +1828,97 @@ Starting Windows ........</div>
     updateClock();
     setInterval(updateClock, 15000);
 
+    function refreshDesktopIcons() {
+      const icons = desktopEl.querySelectorAll(".desk-icon");
+      icons.forEach((el) => {
+        el.classList.remove("refreshing");
+        void el.offsetWidth;
+        el.classList.add("refreshing");
+      });
+      setTimeout(() => {
+        icons.forEach((el) => el.classList.remove("refreshing"));
+      }, 200);
+    }
+
+    function arrangeDesktopByName() {
+      DESKTOP_ORDER = DESKTOP_ORDER.slice().sort((a, b) => {
+        const na = (FS[a] && FS[a].name) || a;
+        const nb = (FS[b] && FS[b].name) || b;
+        return na.localeCompare(nb, undefined, { sensitivity: "base" });
+      });
+      renderDesktop();
+    }
+
+    function alignDesktopGrid() {
+      // Snap back to default column-wrap grid (and original order)
+      DESKTOP_ORDER = DESKTOP_DEFAULT.slice();
+      renderDesktop();
+    }
+
+    function applyWallpaper(id) {
+      wallpaper = id;
+      const screen = document.getElementById("screen");
+      if (screen) screen.setAttribute("data-wp", id);
+      screen.querySelectorAll(".wp-swatch").forEach((s) => {
+        s.classList.toggle("selected", s.dataset.wp === id);
+      });
+    }
+
+    function openWallpaperPicker() {
+      const WALLS = [
+        { id: "bliss", name: "Bliss (XP)", css: "linear-gradient(180deg,#5ba3e0 0%,#a8d0ef 48%,#7cb342 52%,#3d7a1f 100%)" },
+        { id: "teal", name: "Teal (95)", css: "#008080" },
+        { id: "luna", name: "Luna Blue", css: "linear-gradient(180deg,#3a6ea5,#163f9a)" },
+        { id: "clouds", name: "Clouds", css: "linear-gradient(180deg,#6eb6e6,#e8f4fc)" },
+        { id: "stars", name: "Starfield", css: "linear-gradient(180deg,#020014,#1a1440)" },
+        { id: "olive", name: "Olive", css: "linear-gradient(180deg,#6b7c32,#2f3a16)" },
+        { id: "desert", name: "Desert", css: "linear-gradient(180deg,#87b8d8,#d4a056)" },
+        { id: "gray", name: "Classic Blue", css: "#3a6ea5" },
+      ];
+      const tiles = WALLS.map((w) =>
+        `<button type="button" class="wp-swatch${w.id === wallpaper ? " selected" : ""}" data-wp="${w.id}" style="background:${w.css}"><span>${w.name}</span></button>`
+      ).join("");
+      const html = `
+        <div class="doc">
+          <div class="doc-toolbar">Display Properties · Desktop</div>
+          <div class="doc-body">
+            <h3>Background</h3>
+            <p class="meta">Choose a classic wallpaper</p>
+            <div class="wp-grid">${tiles}</div>
+          </div>
+        </div>`;
+      const existed = openWins.has("display-props");
+      const entry = ensureWin("display-props", "Display Properties", "🖼️", 486, 343, html, "Ready");
+      if (existed) {
+        const body = entry.el.querySelector(".win-body");
+        if (body) body.innerHTML = html;
+      }
+      entry.el.querySelectorAll(".wp-swatch").forEach((btn) => {
+        btn.addEventListener("click", () => applyWallpaper(btn.dataset.wp));
+      });
+    }
+
+    function bindDocFontMenu(win) {
+      const menu = win.querySelector(".doc-font-menu");
+      const body = win.querySelector(".doc-body");
+      if (!menu || !body) return;
+      let size = parseInt(body.dataset.fontSize || "14", 10);
+      const range = menu.querySelector("[data-doc-font-range]");
+      const value = menu.querySelector("[data-doc-font-value]");
+      const apply = (px) => {
+        size = Math.max(11, Math.min(28, Math.round(px)));
+        body.dataset.fontSize = String(size);
+        body.style.fontSize = size + "px";
+        if (range) range.value = String(size);
+        if (value) value.textContent = size + "px";
+      };
+      if (range) range.oninput = () => apply(Number(range.value));
+      menu.querySelectorAll("[data-doc-font-delta]").forEach((btn) => {
+        btn.onclick = () => apply(size + Number(btn.dataset.docFontDelta));
+      });
+      apply(size);
+    }
+
     function renderDesktop() {
       desktopEl.innerHTML = "";
       DESKTOP_ORDER.forEach((id) => {
@@ -1633,6 +1934,13 @@ Starting Windows ........</div>
           btn.classList.add("selected");
         });
         btn.addEventListener("dblclick", () => openItem(id));
+        btn.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          desktopEl.querySelectorAll(".desk-icon").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          showItemContext(e, id);
+        });
         btn.addEventListener("touchend", (e) => {
           e.preventDefault();
           if (btn.classList.contains("selected")) openItem(id);
@@ -1723,6 +2031,17 @@ Starting Windows ........</div>
       win.style.height = height + "px";
       win.style.zIndex = ++zTop;
 
+      const isDoc = /class="doc"|class='doc'/.test(bodyHtml);
+      const menuBar = isDoc
+        ? `<div class="win-menu doc-font-menu">
+            <span class="fm-label">Font size</span>
+            <button type="button" class="fm-btn" data-doc-font-delta="-1" title="Smaller">A−</button>
+            <input data-doc-font-range type="range" min="11" max="28" step="1" value="14" />
+            <button type="button" class="fm-btn" data-doc-font-delta="1" title="Larger">A+</button>
+            <span class="fm-value" data-doc-font-value>14px</span>
+          </div>`
+        : `<div class="win-menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>`;
+
       win.innerHTML = `
         <div class="titlebar" data-drag>
           <span class="t-icon">${icon}</span>
@@ -1733,7 +2052,7 @@ Starting Windows ........</div>
             <button class="t-btn close" type="button" data-close title="Close">✕</button>
           </div>
         </div>
-        <div class="win-menu"><span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span></div>
+        ${menuBar}
         <div class="win-body">${bodyHtml}</div>
         <div class="win-status"><span>${statusText || "Ready"}</span><span data-size></span></div>
         <div class="rz rz-n" data-rz="n"></div>
@@ -1862,6 +2181,8 @@ Starting Windows ........</div>
       bar.addEventListener("pointerup", () => { drag = null; });
 
       // Resize edges / corners
+      if (isDoc) bindDocFontMenu(win);
+
       win.querySelectorAll("[data-rz]").forEach((handle) => {
         handle.addEventListener("pointerdown", (e) => {
           e.stopPropagation();
@@ -1987,6 +2308,13 @@ Starting Windows ........</div>
           btn.classList.add("selected");
         });
         btn.addEventListener("dblclick", () => openItem(btn.dataset.file));
+        btn.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          body.querySelectorAll(".file-icon").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          showItemContext(e, btn.dataset.file);
+        });
         btn.addEventListener("touchend", (e) => {
           e.preventDefault();
           if (btn.classList.contains("selected")) openItem(btn.dataset.file);
@@ -2061,8 +2389,8 @@ Starting Windows ........</div>
         winId,
         view.title,
         "📁",
-        560,
-        360,
+        760,
+        464,
         view.html,
         view.status
       );
@@ -2076,7 +2404,7 @@ Starting Windows ........</div>
           <div class="doc-toolbar">Notepad · ${node.name}</div>
           <div class="doc-body">${node.html}</div>
         </div>`;
-      ensureWin("doc:" + id, node.title || node.name, "📝", 480, 340, body, node.name);
+      ensureWin("doc:" + id, node.title || node.name, "📝", 760, 464, body, node.name);
     }
 
     function openLinkWindow(id, node) {
@@ -2095,13 +2423,14 @@ Starting Windows ........</div>
             </p>
           </div>
         </div>`;
-      ensureWin("link:" + id, node.name, "📄", 360, 240, body, "Ready");
+      ensureWin("link:" + id, node.name, "📄", 440, 300, body, "Ready");
     }
 
     function closeStart() {
       startMenu.classList.remove("open");
       startBtn.classList.remove("open");
       startBtn.setAttribute("aria-expanded", "false");
+      hideCtx();
     }
     function toggleStart() {
       const open = !startMenu.classList.contains("open");
@@ -2179,6 +2508,235 @@ Starting Windows ........</div>
       enterDesktop();
     });
 
+    /* ========== Context menu (right-click) ========== */
+    const ctxMenu = document.getElementById("ctxMenu");
+
+    function hideCtx() {
+      if (ctxMenu) ctxMenu.classList.remove("open");
+    }
+
+    function showCtx(clientX, clientY, items) {
+      closeStart();
+      ctxMenu.innerHTML = "";
+      items.forEach((it) => {
+        if (it === "sep") {
+          const sep = document.createElement("div");
+          sep.className = "ctx-sep";
+          ctxMenu.appendChild(sep);
+          return;
+        }
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "ctx-item";
+        b.innerHTML = it.label;
+        if (it.disabled) b.disabled = true;
+        b.addEventListener("click", () => {
+          hideCtx();
+          if (it.fn) it.fn();
+        });
+        ctxMenu.appendChild(b);
+      });
+
+      ctxMenu.classList.add("open");
+      const scr = screenBounds();
+      let x = clientX - scr.left;
+      let y = clientY - scr.top;
+      const mw = ctxMenu.offsetWidth;
+      const mh = ctxMenu.offsetHeight;
+      if (x + mw > scr.width - 4) x = scr.width - mw - 4;
+      if (y + mh > scr.height - 46) y = scr.height - mh - 46;
+      if (x < 4) x = 4;
+      if (y < 4) y = 4;
+      ctxMenu.style.left = x + "px";
+      ctxMenu.style.top = y + "px";
+    }
+
+    function showItemContext(e, id) {
+      const node = FS[id];
+      if (!node) return;
+      const items = [
+        { label: "<b>Open</b>", fn: () => openItem(id) },
+      ];
+      if (node.href) {
+        items.push({
+          label: "Open in new tab",
+          fn: () => {
+            const a = document.createElement("a");
+            a.href = node.href;
+            a.target = "_blank";
+            a.rel = "noopener noreferrer";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          },
+        });
+      }
+      items.push("sep");
+      items.push({
+        label: "Copy name",
+        fn: () => {
+          lastCopied = node.name;
+          if (navigator.clipboard) navigator.clipboard.writeText(node.name).catch(() => {});
+        },
+      });
+      items.push("sep");
+      items.push({
+        label: "Properties",
+        fn: () => showProperties(id),
+      });
+      showCtx(e.clientX, e.clientY, items);
+    }
+
+    function showDesktopContext(e) {
+      showCtx(e.clientX, e.clientY, [
+        { label: "<b>Refresh</b>", fn: () => refreshDesktopIcons() },
+        "sep",
+        { label: "Arrange Icons by Name", fn: () => arrangeDesktopByName() },
+        { label: "Align to Grid", fn: () => alignDesktopGrid() },
+        "sep",
+        {
+          label: "Show Desktop",
+          fn: () => {
+            openWins.forEach((w) => {
+              w.el.style.display = "none";
+              if (w.taskBtn) w.taskBtn.classList.remove("active");
+            });
+          },
+        },
+        "sep",
+        {
+          label: "Paste",
+          disabled: !lastCopied,
+          fn: () => {
+            if (!lastCopied) return;
+            const html = `
+              <div class="doc">
+                <div class="doc-toolbar">Notepad · Clipboard</div>
+                <div class="doc-body">
+                  <h3>Clipboard</h3>
+                  <p class="meta">Pasted from desktop</p>
+                  <p>${lastCopied.replace(/</g, "&lt;")}</p>
+                </div>
+              </div>`;
+            ensureWin("clip:" + Date.now(), "Clipboard.txt", "📝", 760, 464, html, "Ready");
+          },
+        },
+        {
+          label: "New Text Document",
+          fn: () => {
+            const html = `
+              <div class="doc">
+                <div class="doc-toolbar">Notepad · Untitled</div>
+                <div class="doc-body">
+                  <h3>Untitled.txt</h3>
+                  <p class="meta">New text document</p>
+                  <p>(empty)</p>
+                </div>
+              </div>`;
+            ensureWin("new:" + Date.now(), "Untitled.txt", "📝", 760, 464, html, "Ready");
+          },
+        },
+        "sep",
+        { label: "Change Background...", fn: () => openWallpaperPicker() },
+        {
+          label: "Properties",
+          fn: () => showProperties("mycomputer"),
+        },
+      ]);
+    }
+
+    function showProperties(id) {
+      const node = FS[id];
+      if (!node) return;
+      const kind =
+        node.type === "folder" ? "File Folder" :
+        node.kind === "url" || node.kind === "link" ? "Internet Shortcut" :
+        node.name && node.name.toLowerCase().endsWith(".pdf") ? "Adobe Acrobat Document" :
+        "Text Document";
+      const loc = node.type === "folder"
+        ? "C:\\Users\\Nithin\\" + node.name
+        : "C:\\Users\\Nithin\\Desktop\\" + node.name;
+      const html = `
+        <div class="doc">
+          <div class="doc-toolbar">Properties</div>
+          <div class="doc-body">
+            <h3>${node.name}</h3>
+            <p class="meta">${kind}</p>
+            <p><b>Type:</b> ${kind}</p>
+            <p><b>Location:</b> ${loc}</p>
+            ${node.href ? `<p><b>Target:</b> <a href="${node.href}" target="_blank" rel="noopener">${node.href}</a></p>` : ""}
+            <p><b>Opens with:</b> ${node.type === "folder" ? "Windows Explorer" : "NithinOS"}</p>
+          </div>
+        </div>`;
+      ensureWin("props:" + id, node.name + " Properties", "📋", 486, 343, html, "Ready");
+    }
+
+    const screenRoot = document.getElementById("screen");
+    screenRoot.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      if (e.target.closest(".welcome")) return;
+      if (e.target.closest(".desk-icon") || e.target.closest(".file-icon")) return;
+      if (e.target.closest(".ctx-menu")) return;
+      if (e.target.closest(".win-body")) {
+        // empty explorer / notepad area
+        const explorer = e.target.closest(".win");
+        if (explorer && explorer.dataset.id === "explorer") {
+          showDesktopContext(e);
+          return;
+        }
+        hideCtx();
+        return;
+      }
+      if (e.target.closest(".taskbar")) {
+        showCtx(e.clientX, e.clientY, [
+          { label: "Show Desktop", fn: () => {
+            openWins.forEach((w) => {
+              w.el.style.display = "none";
+              if (w.taskBtn) w.taskBtn.classList.remove("active");
+            });
+          }},
+          { label: "Task Manager", disabled: true },
+          "sep",
+          { label: "Properties", fn: () => showProperties("mycomputer") },
+        ]);
+        return;
+      }
+      if (e.target.closest(".win")) {
+        const win = e.target.closest(".win");
+        const wid = win.dataset.id;
+        showCtx(e.clientX, e.clientY, [
+          { label: "<b>Restore</b>", fn: () => {
+            if (win.classList.contains("maximized")) {
+              const maxBtn = win.querySelector("[data-max]");
+              if (maxBtn) maxBtn.click();
+            }
+          }},
+          { label: "Move", disabled: true },
+          { label: "Size", disabled: true },
+          { label: "Minimize", fn: () => {
+            win.style.display = "none";
+            const w = openWins.get(wid);
+            if (w && w.taskBtn) w.taskBtn.classList.remove("active");
+          }},
+          { label: "Maximize", fn: () => {
+            const maxBtn = win.querySelector("[data-max]");
+            if (maxBtn && !win.classList.contains("maximized")) maxBtn.click();
+          }},
+          "sep",
+          { label: "Close", fn: () => closeWin(wid) },
+        ]);
+        return;
+      }
+      showDesktopContext(e);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".ctx-menu")) hideCtx();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") hideCtx();
+    });
+
     document.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         const sel = desktopEl.querySelector(".desk-icon.selected");
@@ -2187,6 +2745,7 @@ Starting Windows ........</div>
       if (e.key === "Escape") closeStart();
     });
 
+    applyWallpaper("bliss");
     renderDesktop();
   </script>
 </body>
